@@ -16,7 +16,7 @@ Every 0.75 seconds the script takes a screenshot of your screen. The image gets 
 
 ## 1) Install Python 3
 
-You can install the required version of python 3 from the [official website](https://www.python.org/downloads/) or download it from the windows store.
+You can install the required version of python 3 from the [official website](https://www.python.org/downloads/) or download it from the microsoft store.
 
 ## 2) Install Tesseract OCR
 
