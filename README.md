@@ -1,6 +1,6 @@
 # deathcounter_ocr
 
-A python script which detects death messages for Elden Ring by using Optical Character Recognition.
+A python script which detects death messages for Elden Ring by using Optical Character Recognition and displays a corrosponding counter.
 The number of deaths is then displayed in a graphical user interfaces. The number of deaths is saved between sessions. <br/>
 The deathcounter doesnt interact with the game in any way and is therefore compatible with online play. <br/>
 The deathcounter can be used for counting your deaths while livestreaming or just for yourself. <br/>
