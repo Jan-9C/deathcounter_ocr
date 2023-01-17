@@ -16,10 +16,10 @@ Install a version of Tesseract OCR [Download](https://github.com/UB-Mannheim/tes
 ## 3) Install required pip libraries
 
 ```console
-# pip install pytesseract
-# pip install PyAutoGUI
-# pip install opencv-python
-# pip install numpy
+pip install pytesseract
+pip install PyAutoGUI
+pip install opencv-python
+pip install numpy
 ```
 
 ## 4) Change set location of Tesseract OCR installation
