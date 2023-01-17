@@ -27,17 +27,20 @@ running = True
 # Function to generate levensthein distance between two Strings
 # in other words it returns how much the strings differ
 def levenshtein(s1, s2):
-    if len(s1) == 0:
-        return len(s2)
-    if len(s2) == 0:
-        return len(s1)
-    if s1[-1] == s2[-1]:
-        cost = 0
-    else:
-        cost = 1
-    return min(levenshtein(s1[:-1], s2) + 1,
-               levenshtein(s1, s2[:-1]) + 1,
-               levenshtein(s1[:-1], s2[:-1]) + cost)
+    m, n = len(s1), len(s2)
+    d = [[0] * (n + 1) for _ in range(m + 1)]
+    for i in range(m + 1):
+        d[i][0] = i
+    for j in range(n + 1):
+        d[0][j] = j
+    for j in range(1, n + 1):
+        for i in range(1, m + 1):
+            if s1[i - 1] == s2[j - 1]:
+                d[i][j] = d[i - 1][j - 1]
+            else:
+                d[i][j] = min(d[i - 1][j], d[i][j - 1], d[i - 1][j - 1]) + 1
+    return d[m][n]
+
     
 def addDeath():
     current = 0
@@ -76,6 +79,7 @@ def stop_scheduled_method():
         update_counter()
 
 def update_counter():
+    detected = False
     # take screenshot using pyautogui
     image = pyautogui.screenshot()
     # Turn image grayscale
@@ -118,11 +122,15 @@ def update_counter():
         
         deathLabel.config(text=str(temp))
         deathLabel.update()
+         # save image to disk
+        cv2.imwrite("image1.png", image)
+        detected = True
+        
 
-    # save image to disk
-    cv2.imwrite("image1.png", image)
-    if running:
-        root.after(5000, update_counter)
+    if running & detected:
+        root.after(10000, update_counter)
+    elif running:
+        root.after(1000, update_counter)
     
 
 root = tk.Tk()
