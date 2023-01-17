@@ -1,9 +1,14 @@
 # deathcounter_ocr
 
-A python script which detects death messages for games by using Optical Character Recognition.
+A python script which detects death messages for Elden Ring by using Optical Character Recognition.
+
 <br /><br />
 
-## Requirements:
+# How does it work?
+
+Every 0.75 seconds the script takes a screenshot of your screen. The image gets cropped so that it only consists of the part of the screen where the death message appears. A mask corrosponding to the color of the death message get generated. The mask is turned grayscale. After that the black and white values get filtered to be more readable for the OCR Algorithm. The processed image is then passed to the OCR algorithm and the result is passed to the counter.
+
+# Requirements:
 
 ## 1) Install Python 3
 
@@ -24,10 +29,12 @@ pip install numpy
 
 ## 4) Change set location of Tesseract OCR installation
 
-In line 8 in deathcounter.py you have to change the path of tesseract.exe so that it matches the setup on your machine.
+In line 8 of deathcounter.py you have to change the path of tesseract.exe so that it matches the setup on your machine.
 
 # Known Bugs
 
-Dont Spam the Stop button this will lead to spamming the check function and therfore may increase your counter too much
+Spamming the stop button can lead to unintended changes in value
 
 Sometimes the detection goes wrong, for this reason you can change the counter by changing the content of the deaths.txt file or use the integrated button to manually change the value.
+
+The script only works if you use the resolution 1920x1080. If you use a diffrent resolution you have to change the image crop coordinates which start in line 87 to crop out the correct part of the screen.
