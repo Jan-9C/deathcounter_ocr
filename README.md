@@ -7,11 +7,11 @@ A python script which detects death messages for games by using Optical Characte
 
 ## 1) Install Python 3
 
-You can install the required version of python from the official [website](https://www.python.org/downloads/) or download it from the windows store.
+You can install the required version of python from the [official website](https://www.python.org/downloads/) or download it from the windows store.
 
 ## 2) Install Tesseract OCR
 
-Install a version of Tesseract OCR [Download](https://github.com/UB-Mannheim/tesseract/wiki)
+Install a version of Tesseract OCR [(Download)](https://github.com/UB-Mannheim/tesseract/wiki)
 
 ## 3) Install required pip libraries
 
