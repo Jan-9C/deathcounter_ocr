@@ -83,7 +83,7 @@ def update_counter():
     image = pyautogui.screenshot()
     
     image = cv2.cvtColor(np.array(image),cv2.COLOR_BGR2HSV_FULL)
-     # Image crop coodinates
+    # Image crop coodinates
     x=754
     y=500
     width=412

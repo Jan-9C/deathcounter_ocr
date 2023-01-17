@@ -37,7 +37,7 @@ In line 8 of deathcounter.py you have to change the path of tesseract.exe so tha
 Use the following command while having a Command Line Interface open in the directory the script is located:
 
 ```console
-python ./deathcounter.py
+python deathcounter.py
 ```
 
 # Known Bugs
