@@ -222,13 +222,7 @@ if compact_mode!="enabled":
     titleLabel.config(text="Deaths",font=("Times New Roman", 20), fg="#a01616", bg="#1b1c1b")
     titleLabel.pack()
     titleLabel.place(relx=.5, rely=.35, anchor="center")
-
-deathLabel = tk.Label(root)
-deathLabel.config(text=counter,font=("Times New Roman", 20), fg="#a01616", bg="#1b1c1b")
-deathLabel.pack()
-deathLabel.place(relx=.5, rely=.5, anchor="center")
-
-if compact_mode !="enabled":
+    
     stopButton = tk.Button(root)
     stopButton.config(text="Stop", command=stop_scheduled_method, font=("Times New Roman", 10), fg="#a01616", bg="#1b1c1b")
     stopButton.pack()
@@ -243,6 +237,12 @@ if compact_mode !="enabled":
     subButton.config(text="-1", command=subDeath, fg="#a01616", font=("Times New Roman", 10), bg="#1b1c1b")
     subButton.pack()
     subButton.place(relx=.7, rely=.7, anchor="center")
+    
+deathLabel = tk.Label(root)
+deathLabel.config(text=counter,font=("Times New Roman", 20), fg="#a01616", bg="#1b1c1b")
+deathLabel.pack()
+deathLabel.place(relx=.5, rely=.5, anchor="center")
+
 
 print("Starting Counter ...")
 update_counter()
