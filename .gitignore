@@ -1,3 +1,7 @@
 deaths.txt
 testImages/
-debugImages/
+cropped.png
+image_grayscale.png
+mask.png
+successfull.png
+unsuccessfull.png
