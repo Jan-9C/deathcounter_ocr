@@ -4,7 +4,37 @@ import pyautogui
 import numpy as np
 import time
 import tkinter as tk
+import os
+
 pytesseract.pytesseract.tesseract_cmd = 'D:\\Tesseract\\tesseract.exe'
+script_dir = os.path.dirname(os.path.abspath(__file__))
+file_path = os.path.join(script_dir, "deaths.txt")
+
+if not os.path.isfile("deaths.txt"):
+    with open("deaths.txt", "w") as file:
+        file.write("0")
+
+counter = 0
+
+with open(file_path,"r") as file:
+    counter = file.read()
+    
+print("Current Counter: " + counter)
+
+# Function to generate levensthein distance between two Strings
+# in other words it returns how much the strings differ
+def levenshtein(s1, s2):
+    if len(s1) == 0:
+        return len(s2)
+    if len(s2) == 0:
+        return len(s1)
+    if s1[-1] == s2[-1]:
+        cost = 0
+    else:
+        cost = 1
+    return min(levenshtein(s1[:-1], s2) + 1,
+               levenshtein(s1, s2[:-1]) + 1,
+               levenshtein(s1[:-1], s2[:-1]) + cost)
 
 
 def update_counter():
@@ -27,18 +57,32 @@ def update_counter():
 
     # Read text from image
     imgtext = pytesseract.image_to_string(image, lang='eng', config='--psm 11')
-    if imgtext=="" :
-        print("No text found")
-        label.config(text="No text found")
-        label.update()
-    else:    
-        print(imgtext)
-        label.config(text=imgtext)
+    ldistance = levenshtein(imgtext,"YOU DIED")
+    print("Detected: " + imgtext)
+    print("ldistance: " + str(ldistance))
+    
+    # Check for acceptable levenshtein distance
+    if ldistance > 6:
+        print("No valid text found")
+    elif ldistance < 6:    
+        print("Valid Text found: " + imgtext)
+        
+        temp = 0
+        
+        with open(file_path,"r") as file:
+            counter = file.read()
+            temp = int(counter)
+            
+        temp = temp+1
+        
+        with open(file_path,"w") as file:
+            file.write(str(temp))
+        
+        label.config(text=str(temp))
         label.update()
 
-    # writing it to the disk using opencv
+    # save image to disk
     cv2.imwrite("image1.png", image)
-    print("Reached")
     root.after(5000, update_counter)
     
 
@@ -46,8 +90,14 @@ root = tk.Tk()
 root.geometry("300x300")
 root.title("Deathcounter")
 
+titlelabel = tk.Label(root)
+titlelabel.config(text="Deaths")
+titlelabel.config(font=("Arial", 15))
+titlelabel.pack()
+titlelabel.place(relx=.5, rely=.3, anchor="center")
+
 label = tk.Label(root)
-label.config(text="Deaths: 0")
+label.config(text=counter)
 label.config(font=("Arial", 15))
 label.pack()
 label.place(relx=.5, rely=.5, anchor="center")
