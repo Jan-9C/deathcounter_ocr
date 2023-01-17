@@ -22,7 +22,7 @@ Install a version of Tesseract OCR [Download](https://github.com/UB-Mannheim/tes
 # pip install numpy
 ```
 
-# 4) Change set location of Tesseract OCR installation
+## 4) Change set location of Tesseract OCR installation
 
 In line 8 in deathcounter.py you have to change the path of tesseract.exe so that it matches the setup on your machine.
 
