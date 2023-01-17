@@ -94,7 +94,7 @@ def update_counter():
    
     cv2.imwrite("debugImages/cropped.png", image)
     
-    # Lower Mask for testimage1 : 
+    # lower Mask for testimage1 : 
     lower_red = np.array([176,183,102])
     upper_red = np.array([166,173,62])
     mask0 = cv2.inRange(image, lower_red, upper_red)
@@ -104,17 +104,28 @@ def update_counter():
     upper_red = np.array([186,193,142])
     mask1 = cv2.inRange(image, lower_red, upper_red)
     
-    # Lower Mask for testimage2: 
+    # lower mask for testimage2: 
     lower_red = np.array([175,232,112])
     upper_red = np.array([165,222,72])
     mask2 = cv2.inRange(image, lower_red, upper_red)
     
-    # upper Mask for testimage2 : 
+    # upper mask for testimage2 : 
     lower_red = np.array([165,222,72])
     upper_red = np.array([185,242,152])
     mask3 = cv2.inRange(image, lower_red, upper_red)
+    
+    # lower mask for testimage5:
+    lower_red = np.array([172,131,70])
+    upper_red = np.array([162,121,30])
+    mask4 = cv2.inRange(image, lower_red, upper_red)
+    
+    # upper mask for testimage5:
+    lower_red = np.array([162,121,30])
+    upper_red = np.array([182, 141, 110])
+    mask5 = cv2.inRange(image, lower_red, upper_red)
+    
 
-    mask = mask0+mask1+mask2+mask3
+    mask = mask0+mask1+mask2+mask3+mask4+mask5
     
     output_img = image.copy()
     output_img[np.where(mask==0)] = 0
