@@ -4,6 +4,7 @@ import pyautogui
 import numpy as np
 import tkinter as tk
 import os
+import time
 
 pytesseract.pytesseract.tesseract_cmd = 'D:\\Tesseract\\tesseract.exe'
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -38,6 +39,31 @@ def levenshtein(s1, s2):
                levenshtein(s1, s2[:-1]) + 1,
                levenshtein(s1[:-1], s2[:-1]) + cost)
     
+def addDeath():
+    current = 0
+    with open(file_path,"r") as file:
+        current = int(file.read())
+    
+    current = current + 1
+    
+    deathLabel.config(text=str(current))
+    deathLabel.update()
+    
+    with open(file_path, "w") as file:
+        file.write(str(current))
+
+def subDeath():
+    current = 0
+    with open(file_path,"r") as file:
+        current = int(file.read())
+    
+    current = current - 1
+    
+    deathLabel.config(text=str(current))
+    deathLabel.update()
+    
+    with open(file_path, "w") as file:
+        file.write(str(current))
 
 def stop_scheduled_method():
     global running
@@ -96,7 +122,7 @@ def update_counter():
     # save image to disk
     cv2.imwrite("image1.png", image)
     if running:
-        root.after(5000, update_counter)
+        root.after(2500, update_counter)
     
 
 root = tk.Tk()
@@ -118,6 +144,16 @@ stopButton = tk.Button(root)
 stopButton.config(text="Stop", command=stop_scheduled_method, fg="red", bg="#1b1c1b")
 stopButton.pack()
 stopButton.place(relx=.5, rely=.7, anchor="center")
+
+addButton = tk.Button(root)
+addButton.config(text="+1", command=addDeath, fg="red", bg="#1b1c1b")
+addButton.pack()
+addButton.place(relx=.3, rely=.7, anchor="center")
+
+subButton = tk.Button(root)
+subButton.config(text="-1", command=subDeath, fg="red", bg="#1b1c1b")
+subButton.pack()
+subButton.place(relx=.7, rely=.7, anchor="center")
 
 update_counter()
 root.mainloop()
