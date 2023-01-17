@@ -2,6 +2,9 @@
 
 A python script which detects death messages for Elden Ring by using Optical Character Recognition.
 The number of deaths is then displayed in a graphical user interfaces. The number of deaths is saved between sessions.
+The deathcounter doesnt interact with the game in any way and is therefore compatible with online play.
+The deathcounter can be used for counting your deaths while livestreaming or just for yourself.
+In my tests there was no noticable performance impact.
 
 <br /><br />
 
@@ -39,6 +42,8 @@ Use the following command while having a Command Line Interface open in the dire
 ```console
 python deathcounter.py
 ```
+
+If you want to show the counter while streaming you just have to add the window which displays the counter as a source in OBS.
 
 # Known Bugs
 
