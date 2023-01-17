@@ -166,10 +166,10 @@ def update_counter():
         deathLabel.config(text=str(temp))
         deathLabel.update()
          # save image to disk
-        cv2.imwrite("image1.png", image)
+        cv2.imwrite("successfull.png", image)
         detected = True
         
-    cv2.imwrite("image1.png", image)
+    cv2.imwrite("unsuccsessfull.png", image)
 
     if running & detected:
         root.after(10000, update_counter)
