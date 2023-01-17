@@ -54,6 +54,6 @@ Sometimes the detection goes wrong, for this reason you can change the counter b
 
 The script only works if you use the resolution 1920x1080. If you use a diffrent resolution you have to change the image crop coordinates which start in line 98 to crop out the correct part of the screen. <br/>
 
-Currently only works with the english version of the game, <br/>
+Currently only works with the english version of the game. <br/>
 
 
