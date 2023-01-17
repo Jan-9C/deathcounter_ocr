@@ -33,7 +33,7 @@ pip install numpy
 
 ## 4) Change set location of Tesseract OCR installation
 
-In config.json you have to change the path of tesseract.exe so that it matches the setup on your machine("tesseract_directory": "YOUR_PATH"). Remember to double every \
+In config.json you have to change the path to tesseract.exe so that it matches the setup on your machine("tesseract_directory": "YOUR_PATH"). Remember to double every \
 
 # Usage
 
