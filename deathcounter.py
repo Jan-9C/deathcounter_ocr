@@ -4,7 +4,6 @@ import pyautogui
 import numpy as np
 import tkinter as tk
 import os
-import time
 
 pytesseract.pytesseract.tesseract_cmd = 'D:\\Tesseract\\tesseract.exe'
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -178,7 +177,7 @@ def update_counter():
     if running & detected:
         root.after(10000, update_counter)
     elif running:
-        root.after(1000, update_counter)
+        root.after(750, update_counter)
     
 
 root = tk.Tk()
