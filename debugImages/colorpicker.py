@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 
+# THIS SCRIPT WAS NOT WRITTEN BY ME SOURCE: https://answers.opencv.org/question/134248/how-to-define-the-lower-and-upper-range-of-a-color/
 image_hsv = None   # global ;(
 pixel = (20,60,80) # some stupid default
 
