@@ -169,7 +169,7 @@ def update_counter():
         cv2.imwrite("successfull.png", image)
         detected = True
         
-    cv2.imwrite("unsuccsessfull.png", image)
+    cv2.imwrite("unsuccessfull.png", image)
 
     if running & detected:
         root.after(10000, update_counter)
