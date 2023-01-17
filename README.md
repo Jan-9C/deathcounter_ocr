@@ -1,7 +1,7 @@
 # deathcounter_ocr
 
 A python script which detects death messages for Elden Ring by using Optical Character Recognition.
-The number of deaths is then displayed in a graphical user interfaces. And the number of deaths is saved between sessions.
+The number of deaths is then displayed in a graphical user interfaces. The number of deaths is saved between sessions.
 
 <br /><br />
 
@@ -31,6 +31,14 @@ pip install numpy
 ## 4) Change set location of Tesseract OCR installation
 
 In line 8 of deathcounter.py you have to change the path of tesseract.exe so that it matches the setup on your machine.
+
+## Usage
+
+Use the following command while having a Command Line Interface open in the directory the script is located:
+
+```console
+python ./deathcounter.py
+```
 
 # Known Bugs
 
