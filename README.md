@@ -21,6 +21,7 @@ You can install the required version of python 3 from the [official website](htt
 ## 2) Install Tesseract OCR
 
 Install a version of Tesseract OCR [(Download)](https://github.com/UB-Mannheim/tesseract/wiki)
+You only need the english language package, all of the other available things you can choose are not necessary
 
 ## 3) Install required pip libraries
 
