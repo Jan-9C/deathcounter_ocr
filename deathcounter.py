@@ -122,7 +122,7 @@ def update_counter():
     # save image to disk
     cv2.imwrite("image1.png", image)
     if running:
-        root.after(2500, update_counter)
+        root.after(5000, update_counter)
     
 
 root = tk.Tk()
@@ -131,29 +131,30 @@ root.config(bg="#1b1c1b")
 root.title("Deathcounter")
 
 titleLabel = tk.Label(root)
-titleLabel.config(text="Deaths",font=("Arial", 15), fg="red", bg="#1b1c1b")
+titleLabel.config(text="Deaths",font=("Times New Roman", 20), fg="#a01616", bg="#1b1c1b")
 titleLabel.pack()
-titleLabel.place(relx=.5, rely=.4, anchor="center")
+titleLabel.place(relx=.5, rely=.35, anchor="center")
 
 deathLabel = tk.Label(root)
-deathLabel.config(text=counter,font=("Arial", 15), fg="red", bg="#1b1c1b")
+deathLabel.config(text=counter,font=("Times New Roman", 20), fg="#a01616", bg="#1b1c1b")
 deathLabel.pack()
 deathLabel.place(relx=.5, rely=.5, anchor="center")
 
 stopButton = tk.Button(root)
-stopButton.config(text="Stop", command=stop_scheduled_method, fg="red", bg="#1b1c1b")
+stopButton.config(text="Stop", command=stop_scheduled_method, font=("Times New Roman", 10), fg="#a01616", bg="#1b1c1b")
 stopButton.pack()
 stopButton.place(relx=.5, rely=.7, anchor="center")
 
 addButton = tk.Button(root)
-addButton.config(text="+1", command=addDeath, fg="red", bg="#1b1c1b")
+addButton.config(text="+1", command=addDeath, font=("Times New Roman", 10), fg="#a01616", bg="#1b1c1b")
 addButton.pack()
 addButton.place(relx=.3, rely=.7, anchor="center")
 
 subButton = tk.Button(root)
-subButton.config(text="-1", command=subDeath, fg="red", bg="#1b1c1b")
+subButton.config(text="-1", command=subDeath, fg="#a01616", font=("Times New Roman", 10), bg="#1b1c1b")
 subButton.pack()
 subButton.place(relx=.7, rely=.7, anchor="center")
 
+print("Updating starting...")
 update_counter()
 root.mainloop()
