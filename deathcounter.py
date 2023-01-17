@@ -2,7 +2,6 @@ import cv2
 import pytesseract
 import pyautogui
 import numpy as np
-import time
 import tkinter as tk
 import os
 
@@ -91,8 +90,8 @@ def update_counter():
         with open(file_path,"w") as file:
             file.write(str(temp))
         
-        label.config(text=str(temp))
-        label.update()
+        deathLabel.config(text=str(temp))
+        deathLabel.update()
 
     # save image to disk
     cv2.imwrite("image1.png", image)
@@ -102,22 +101,21 @@ def update_counter():
 
 root = tk.Tk()
 root.geometry("300x300")
-#root.configure(bg="black")
+root.config(bg="#1b1c1b")
 root.title("Deathcounter")
 
 titleLabel = tk.Label(root)
-titleLabel.config(text="Deaths")
-titleLabel.config(font=("Arial", 15))
+titleLabel.config(text="Deaths",font=("Arial", 15), fg="red", bg="#1b1c1b")
 titleLabel.pack()
 titleLabel.place(relx=.5, rely=.4, anchor="center")
 
-label = tk.Label(root)
-label.config(text=counter)
-label.config(font=("Arial", 15))
-label.pack()
-label.place(relx=.5, rely=.5, anchor="center")
+deathLabel = tk.Label(root)
+deathLabel.config(text=counter,font=("Arial", 15), fg="red", bg="#1b1c1b")
+deathLabel.pack()
+deathLabel.place(relx=.5, rely=.5, anchor="center")
 
-stopButton = tk.Button(root, text="Stop", command=stop_scheduled_method)
+stopButton = tk.Button(root)
+stopButton.config(text="Stop", command=stop_scheduled_method, fg="red", bg="#1b1c1b")
 stopButton.pack()
 stopButton.place(relx=.5, rely=.7, anchor="center")
 
