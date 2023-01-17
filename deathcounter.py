@@ -21,6 +21,9 @@ with open(file_path,"r") as file:
     
 print("Current Counter: " + counter)
 
+
+running = True
+
 # Function to generate levensthein distance between two Strings
 # in other words it returns how much the strings differ
 def levenshtein(s1, s2):
@@ -35,7 +38,17 @@ def levenshtein(s1, s2):
     return min(levenshtein(s1[:-1], s2) + 1,
                levenshtein(s1, s2[:-1]) + 1,
                levenshtein(s1[:-1], s2[:-1]) + cost)
+    
 
+def stop_scheduled_method():
+    global running
+    if running:
+        running = False
+        stopButton.config(text="Resume")
+    else:
+        running = True
+        stopButton.config(text="Stop")
+        update_counter()
 
 def update_counter():
     # take screenshot using pyautogui
@@ -83,18 +96,20 @@ def update_counter():
 
     # save image to disk
     cv2.imwrite("image1.png", image)
-    root.after(5000, update_counter)
+    if running:
+        root.after(5000, update_counter)
     
 
 root = tk.Tk()
 root.geometry("300x300")
+#root.configure(bg="black")
 root.title("Deathcounter")
 
-titlelabel = tk.Label(root)
-titlelabel.config(text="Deaths")
-titlelabel.config(font=("Arial", 15))
-titlelabel.pack()
-titlelabel.place(relx=.5, rely=.3, anchor="center")
+titleLabel = tk.Label(root)
+titleLabel.config(text="Deaths")
+titleLabel.config(font=("Arial", 15))
+titleLabel.pack()
+titleLabel.place(relx=.5, rely=.4, anchor="center")
 
 label = tk.Label(root)
 label.config(text=counter)
@@ -102,5 +117,9 @@ label.config(font=("Arial", 15))
 label.pack()
 label.place(relx=.5, rely=.5, anchor="center")
 
-root.after(5000, update_counter)
+stopButton = tk.Button(root, text="Stop", command=stop_scheduled_method)
+stopButton.pack()
+stopButton.place(relx=.5, rely=.7, anchor="center")
+
+update_counter()
 root.mainloop()
