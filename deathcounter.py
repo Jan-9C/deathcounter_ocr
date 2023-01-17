@@ -4,8 +4,16 @@ import pyautogui
 import numpy as np
 import tkinter as tk
 import os
+import json
 
-pytesseract.pytesseract.tesseract_cmd = 'D:\\Tesseract\\tesseract.exe'
+with open('config.json', 'r') as f:
+    config = json.load(f)
+
+tesseract_directory_path = config['tesseract_directory']
+debug_mode = config['debug_mode']
+
+pytesseract.pytesseract.tesseract_cmd = os.path.join(tesseract_directory_path, "tesseract.exe")
+
 script_dir = os.path.dirname(os.path.abspath(__file__))
 file_path = os.path.join(script_dir, "deaths.txt")
 
@@ -17,8 +25,10 @@ counter = 0
 
 with open(file_path,"r") as file:
     counter = file.read()
-    
-print("Current Counter: " + counter)
+
+# Debug Info  
+if(debug_mode == "enabled"):
+    print("Start Value of Counter: " + counter)
 
 
 running = True
@@ -91,7 +101,9 @@ def update_counter():
     # Crop the image
     image = image[y:y+height, x:x+width]
    
-    cv2.imwrite("debugImages/cropped.png", image)
+    # Debug Info
+    if(debug_mode == "enabled"):
+        cv2.imwrite("debugImages/cropped.png", image)
     
     # lower Mask for testimage1 : 
     lower_red = np.array([176,183,102])
@@ -131,11 +143,16 @@ def update_counter():
     
     image = output_img
 
-    cv2.imwrite("debugImages/mask.png", image)
+    # Debug Info
+    if(debug_mode == "enabled"):
+        cv2.imwrite("debugImages/mask.png", image)
     
     # Turn image grayscale
     image = cv2.cvtColor(np.array(image),cv2.COLOR_BGR2GRAY)
-    cv2.imwrite("debugImages/image_grayscale.png", image)
+    
+    # Debug Info
+    if(debug_mode == "enabled"):
+        cv2.imwrite("debugImages/image_grayscale.png", image)
     
     # Black and White processing
     image = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
@@ -146,14 +163,21 @@ def update_counter():
     # Read text from image
     imgtext = pytesseract.image_to_string(image, lang='eng', config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2')
     ldistance = levenshtein(imgtext,"YOUDIED")
-    print("Detected: " + imgtext)
-    print("ldistance: " + str(ldistance))
+    
+    # Debug Info 
+    if(debug_mode == "enabled"):
+        print("Detected: " + imgtext)
+        print("ldistance: " + str(ldistance))
     
     # Check for acceptable levenshtein distance
     if ldistance > 6:
-        print("No valid text found")
-    elif ldistance < 6:    
-        print("Valid Text found: " + imgtext)
+        # Debug Info
+        if(debug_mode == "enabled"):
+            print("No valid text found")
+    elif ldistance < 6:
+        # Debug Info
+        if(debug_mode == "enabled"):
+            print("Valid Text found: " + imgtext)
         
         temp = 0
         
@@ -168,11 +192,14 @@ def update_counter():
         
         deathLabel.config(text=str(temp))
         deathLabel.update()
-         # save image to disk
-        cv2.imwrite("debugImages/successfull.png", image)
+         # Debug Info
+        if(debug_mode == "enabled"):
+             cv2.imwrite("debugImages/successfull.png", image)
+             
         detected = True
         
-    cv2.imwrite("debugImages/unsuccessfull.png", image)
+    if(debug_mode == "enabled"):
+        cv2.imwrite("debugImages/unsuccessfull.png", image)
 
     if running & detected:
         root.after(10000, update_counter)
@@ -210,6 +237,6 @@ subButton.config(text="-1", command=subDeath, fg="#a01616", font=("Times New Rom
 subButton.pack()
 subButton.place(relx=.7, rely=.7, anchor="center")
 
-print("Updating starting...")
+print("Starting Counter ...")
 update_counter()
 root.mainloop()
