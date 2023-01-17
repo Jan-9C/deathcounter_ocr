@@ -1,4 +1,5 @@
 {
     "tesseract_directory": "D:\\Tesseract",
-    "debug_mode": "disabled"
+    "debug_mode": "disabled",
+    "compact_mode": "disabled"
 }

@@ -11,6 +11,7 @@ with open('config.json', 'r') as f:
 
 tesseract_directory_path = config['tesseract_directory']
 debug_mode = config['debug_mode']
+compact_mode = config['compact_mode']
 
 pytesseract.pytesseract.tesseract_cmd = os.path.join(tesseract_directory_path, "tesseract.exe")
 
@@ -208,34 +209,40 @@ def update_counter():
     
 
 root = tk.Tk()
-root.geometry("300x300")
 root.config(bg="#1b1c1b")
 root.title("Deathcounter")
 
-titleLabel = tk.Label(root)
-titleLabel.config(text="Deaths",font=("Times New Roman", 20), fg="#a01616", bg="#1b1c1b")
-titleLabel.pack()
-titleLabel.place(relx=.5, rely=.35, anchor="center")
+if compact_mode!="enabled":
+    root.geometry("300x300")
+else:
+    root.geometry("250x50")
+
+if compact_mode!="enabled":
+    titleLabel = tk.Label(root)
+    titleLabel.config(text="Deaths",font=("Times New Roman", 20), fg="#a01616", bg="#1b1c1b")
+    titleLabel.pack()
+    titleLabel.place(relx=.5, rely=.35, anchor="center")
 
 deathLabel = tk.Label(root)
 deathLabel.config(text=counter,font=("Times New Roman", 20), fg="#a01616", bg="#1b1c1b")
 deathLabel.pack()
 deathLabel.place(relx=.5, rely=.5, anchor="center")
 
-stopButton = tk.Button(root)
-stopButton.config(text="Stop", command=stop_scheduled_method, font=("Times New Roman", 10), fg="#a01616", bg="#1b1c1b")
-stopButton.pack()
-stopButton.place(relx=.5, rely=.7, anchor="center")
+if compact_mode !="enabled":
+    stopButton = tk.Button(root)
+    stopButton.config(text="Stop", command=stop_scheduled_method, font=("Times New Roman", 10), fg="#a01616", bg="#1b1c1b")
+    stopButton.pack()
+    stopButton.place(relx=.5, rely=.7, anchor="center")
 
-addButton = tk.Button(root)
-addButton.config(text="+1", command=addDeath, font=("Times New Roman", 10), fg="#a01616", bg="#1b1c1b")
-addButton.pack()
-addButton.place(relx=.3, rely=.7, anchor="center")
+    addButton = tk.Button(root)
+    addButton.config(text="+1", command=addDeath, font=("Times New Roman", 10), fg="#a01616", bg="#1b1c1b")
+    addButton.pack()
+    addButton.place(relx=.3, rely=.7, anchor="center")
 
-subButton = tk.Button(root)
-subButton.config(text="-1", command=subDeath, fg="#a01616", font=("Times New Roman", 10), bg="#1b1c1b")
-subButton.pack()
-subButton.place(relx=.7, rely=.7, anchor="center")
+    subButton = tk.Button(root)
+    subButton.config(text="-1", command=subDeath, fg="#a01616", font=("Times New Roman", 10), bg="#1b1c1b")
+    subButton.pack()
+    subButton.place(relx=.7, rely=.7, anchor="center")
 
 print("Starting Counter ...")
 update_counter()
