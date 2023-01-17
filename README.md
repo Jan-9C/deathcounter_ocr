@@ -35,7 +35,7 @@ pip install numpy
 
 In line 8 of deathcounter.py you have to change the path of tesseract.exe so that it matches the setup on your machine.
 
-## Usage
+# Usage
 
 Use the following command while having a Command Line Interface open in the directory the script is located:
 
