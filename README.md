@@ -45,9 +45,7 @@ python deathcounter.py
 
 If you want to show the counter while streaming you just have to add the window which displays the counter as a source in OBS.
 
-# Known Bugs
-
-Spamming the stop button can lead to unintended changes in value
+# Known Issues
 
 Sometimes the detection goes wrong, for this reason you can change the counter by changing the content of the deaths.txt file or use the integrated button to manually change the value.
 
