@@ -92,7 +92,7 @@ def update_counter():
     # Crop the image
     image = image[y:y+height, x:x+width]
    
-    cv2.imwrite("cropped.png", image)
+    cv2.imwrite("debugImages/cropped.png", image)
     
     # Lower Mask for testimage1 : 
     lower_red = np.array([176,183,102])
@@ -113,26 +113,19 @@ def update_counter():
     lower_red = np.array([165,222,72])
     upper_red = np.array([185,242,152])
     mask3 = cv2.inRange(image, lower_red, upper_red)
-    
-    
-    
-    
-    
+
     mask = mask0+mask1+mask2+mask3
     
     output_img = image.copy()
     output_img[np.where(mask==0)] = 0
     
     image = output_img
-    
-    
-    
-    
-    cv2.imwrite("mask.png", image)
+
+    cv2.imwrite("debugImages/mask.png", image)
     
     # Turn image grayscale
     image = cv2.cvtColor(np.array(image),cv2.COLOR_BGR2GRAY)
-    cv2.imwrite("image_grayscale.png", image)
+    cv2.imwrite("debugImages/image_grayscale.png", image)
     
     # Black and White processing
     image = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
@@ -166,10 +159,10 @@ def update_counter():
         deathLabel.config(text=str(temp))
         deathLabel.update()
          # save image to disk
-        cv2.imwrite("successfull.png", image)
+        cv2.imwrite("debugImages/successfull.png", image)
         detected = True
         
-    cv2.imwrite("unsuccessfull.png", image)
+    cv2.imwrite("debugImages/unsuccessfull.png", image)
 
     if running & detected:
         root.after(10000, update_counter)
