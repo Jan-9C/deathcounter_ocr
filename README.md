@@ -45,9 +45,8 @@ python deathcounter.py
 ```
 
 You can acitvate the debug_mode with the parameter "enable" in config.json to see debug info and maybe try to improve the image processing yourself <br/>
+If you want to show the counter while streaming you just have to add the window which displays the counter as a source in OBS.<br/>
 You can activate the compact_mode with the parameter "enable" to only show the number of deaths in the displayed window. This can be useful if you want to use it as an OBS source and not use that much space for it <br/>
-
-If you want to show the counter while streaming you just have to add the window which displays the counter as a source in OBS.
 
 # Known Issues
 
