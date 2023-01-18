@@ -9,6 +9,9 @@ import json
 with open('config.json', 'r') as f:
     config = json.load(f)
 
+with open(config["crop_file"], 'r') as f:
+    crop = json.load(f)    
+    
 tesseract_directory_path = config['tesseract_directory']
 debug_mode = config['debug_mode']
 compact_mode = config['compact_mode']
@@ -95,10 +98,10 @@ def update_counter():
     
     image = cv2.cvtColor(np.array(image),cv2.COLOR_BGR2HSV_FULL)
     # Image crop coodinates
-    x=754
-    y=500
-    width=412
-    height=90
+    x=int(crop["x"])
+    y=int(crop["y"])
+    width=int(crop["width"])
+    height=int(crop["height"])
     # Crop the image
     image = image[y:y+height, x:x+width]
    
