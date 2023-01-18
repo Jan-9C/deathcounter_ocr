@@ -21,10 +21,16 @@ def pick_crop(event,x,y,flags,param):
         cropYend = y
         crop['width'] = str(cropXend-int(crop['x']))
         crop['height'] = str(cropYend-int(crop['y']))
-        print("Exporting JSON:")
-        print(crop)
-        with open('..\\my_crop.json', 'w') as json_file:
-            json_file.write(json.dumps(crop))
+        name = input("Choose the name of the JSON file: ")
+        if name != "":
+            print("Exporting JSON:")
+            print(crop)
+            with open('..\\' + name + ".json", 'w') as json_file:
+                json_file.write(json.dumps(crop))
+                exit(1)
+        else:
+            print("No name entered")
+            exit(0)
         
 def main():
     import sys
@@ -38,10 +44,10 @@ def main():
     image_src = cv2.imread(sys.argv[1])  # imageCrop.py my.png
     if image_src is None:
         print ("the image read is None............")
-        return
-    cv2.imshow("bgr",image_src)
+        exit(0)
+    cv2.imshow("imageCrop",image_src)
 
-    cv2.setMouseCallback('bgr', pick_crop)
+    cv2.setMouseCallback('imageCrop', pick_crop)
     
     cv2.waitKey(0)
     cv2.destroyAllWindows()
