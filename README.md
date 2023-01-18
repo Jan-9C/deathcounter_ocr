@@ -52,7 +52,7 @@ You can activate the compact_mode with the parameter "enable" to only show the n
 
 Sometimes the detection goes wrong, for this reason you can change the counter by changing the content of the deaths.txt file or use the integrated button to manually change the value. <br/>
 
-The script only works if you use the resolution 1920x1080. If you use a diffrent resolution you have to change the image crop coordinates which start in line 98 to crop out the correct part of the screen. <br/>
+The script only works if you use the resolution 1920x1080. If you use a diffrent resolution you have to change the image crop coordinates, which can be configured by using the python script provided in debugImages\ and the config to crop out the correct part of the screen. <br/>
 
 Currently only works with the english version of the game. <br/>
 
