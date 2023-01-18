@@ -178,6 +178,8 @@ def update_counter():
         # Debug Info
         if(debug_mode == "enabled"):
             print("No valid text found")
+            cv2.imwrite("debugImages/unsuccessfull.png", image)
+
     elif ldistance < 6:
         # Debug Info
         if(debug_mode == "enabled"):
@@ -202,9 +204,6 @@ def update_counter():
              
         detected = True
         
-    if(debug_mode == "enabled"):
-        cv2.imwrite("debugImages/unsuccessfull.png", image)
-
     if running & detected:
         root.after(10000, update_counter)
     elif running:
