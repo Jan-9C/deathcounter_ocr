@@ -43,16 +43,15 @@ Use the following command while having a Command Line Interface open in the dire
 ```console
 python deathcounter.py
 ```
-
-You can acitvate the debug_mode with the parameter "enable" in config.json to see debug info and maybe try to improve the image processing yourself <br/>
 If you want to show the counter while streaming you just have to add the window which displays the counter as a source in OBS.<br/>
 You can activate the compact_mode with the parameter "enable" to only show the number of deaths in the displayed window. This can be useful if you want to use it as an OBS source and not use that much space for it <br/>
+You can acitvate the debug_mode with the parameter "enable" in config.json to see debug info and maybe try to improve the image processing yourself <br/>
 
 # Known Issues
 
 Sometimes the detection goes wrong, for this reason you can change the counter by changing the content of the deaths.txt file or use the integrated button to manually change the value. <br/>
 
-The script only works if you use the resolution 1920x1080. If you use a diffrent resolution you have to change the image crop coordinates which start in line 98 to crop out the correct part of the screen. <br/>
+The script only works if you use the resolution 1920x1080. If you use a different resolution you have to change the image crop coordinates, which can be configured by using the python script provided in debugImages\ and the config to crop out the correct part of the screen. <br/>
 
 Currently only works with the english version of the game. <br/>
 
