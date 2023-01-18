@@ -109,37 +109,57 @@ def update_counter():
     if(debug_mode == "enabled"):
         cv2.imwrite("debugImages/cropped.png", image)
     
-    # lower Mask for testimage1 : 
-    lower_red = np.array([176,183,102])
-    upper_red = np.array([166,173,62])
-    mask0 = cv2.inRange(image, lower_red, upper_red)
+    # TODO: add import of masks per .json and generate following codeblock automatically  
+    # Mask 1
+    lower = np.array([166,173,62])
+    pixelvalue = np.array([176,183,102])
+    upper = np.array([186,193,142])
+    mask_lower = cv2.inRange(image, lower, pixelvalue)
+    mask_upper = cv2.inRange(image, pixelvalue, upper)
+    mask = mask_lower + mask_upper
     
-    # upper mask for testimage1:
-    lower_red = np.array([166,173,62])
-    upper_red = np.array([186,193,142])
-    mask1 = cv2.inRange(image, lower_red, upper_red)
+    # Mask 2
+    lower = np.array([165,222,72])
+    pixelvalue = np.array([175,232,112])
+    upper = np.array([185,242,152])
+    mask_lower = cv2.inRange(image, lower, pixelvalue)
+    mask_upper = cv2.inRange(image, pixelvalue, upper)
+    mask = mask + mask_lower + mask_upper
     
-    # lower mask for testimage2: 
-    lower_red = np.array([175,232,112])
-    upper_red = np.array([165,222,72])
-    mask2 = cv2.inRange(image, lower_red, upper_red)
+    # Mask 3
+    lower = np.array([162,121,30])
+    pixelvalue = np.array([172,131,70])
+    upper = np.array([182, 141, 110])
+    mask_lower = cv2.inRange(image, lower, pixelvalue)
+    mask_upper = cv2.inRange(image, pixelvalue, upper)
+    mask = mask + mask_lower + mask_upper
     
-    # upper mask for testimage2 : 
-    lower_red = np.array([165,222,72])
-    upper_red = np.array([185,242,152])
-    mask3 = cv2.inRange(image, lower_red, upper_red)
+    # Mask 4
+    # [164 245  91] [174 255 131] [184 265 171]
+    lower = np.array([164,245,91])
+    pixelvalue = np.array([174,255,131])
+    upper = np.array([184, 265, 171])
+    mask_lower = cv2.inRange(image, lower, pixelvalue)
+    mask_upper = cv2.inRange(image, pixelvalue, upper)
+    mask = mask + mask_lower + mask_upper
     
-    # lower mask for testimage5:
-    lower_red = np.array([172,131,70])
-    upper_red = np.array([162,121,30])
-    mask4 = cv2.inRange(image, lower_red, upper_red)
+    # Mask 5
+    # [165 166  63] [175 176 103] [185 186 143]
+    lower = np.array([165,166,63])
+    pixelvalue = np.array([175,176,103])
+    upper = np.array([185, 186, 143])
+    mask_lower = cv2.inRange(image, lower, pixelvalue)
+    mask_upper = cv2.inRange(image, pixelvalue, upper)
+    mask = mask + mask_lower + mask_upper
     
-    # upper mask for testimage5:
-    lower_red = np.array([162,121,30])
-    upper_red = np.array([182, 141, 110])
-    mask5 = cv2.inRange(image, lower_red, upper_red)
-    
-    mask = mask0+mask1+mask2+mask3+mask4+mask5
+    # Mask 6
+    #[161 147  30] [171 157  70] [181 167 110]
+    lower = np.array([161,147,30])
+    pixelvalue = np.array([171,157,70])
+    upper = np.array([181, 167, 110])
+    mask_lower = cv2.inRange(image, lower, pixelvalue)
+    mask_upper = cv2.inRange(image, pixelvalue, upper)
+    mask = mask + mask_lower + mask_upper
     
     output_img = image.copy()
     output_img[np.where(mask==0)] = 0
