@@ -94,7 +94,7 @@ def stop_scheduled_method():
 def update_counter():
     detected = False
     # take screenshot using pyautogui
-    image = pyautogui.screenshot()
+    image = pyautogui.screenshot(region=(0, 0, 1920, 1080))
     
     image = cv2.cvtColor(np.array(image),cv2.COLOR_BGR2HSV_FULL)
     # Image crop coodinates
