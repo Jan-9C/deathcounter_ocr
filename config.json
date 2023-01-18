@@ -1,6 +1,6 @@
 {
     "tesseract_directory": "D:\\Tesseract",
-    "debug_mode": "enabled",
+    "debug_mode": "disabled",
     "compact_mode": "disabled",
     "crop_file":"crop.json"
 }
