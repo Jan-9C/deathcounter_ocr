@@ -21,7 +21,7 @@ def pick_crop(event,x,y,flags,param):
         cropYend = y
         crop['width'] = str(cropXend-int(crop['x']))
         crop['height'] = str(cropYend-int(crop['y']))
-        name = input("Choose the name of the JSON file: ")
+        name = input("Choose the name of the JSON file (without .json): ")
         if name != "":
             print("Exporting JSON:")
             print(crop)
