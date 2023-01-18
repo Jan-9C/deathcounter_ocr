@@ -5,6 +5,10 @@ import numpy as np
 image_hsv = None   # global ;(
 pixel = (20,60,80) # some stupid default
 
+def closeMask(event, x,y, flags, param):
+    if event== cv2.EVENT_RBUTTONDOWN:
+        cv2.destroyWindow("mask")
+
 # mouse callback function
 def pick_color(event,x,y,flags,param):
     if event == cv2.EVENT_LBUTTONDOWN:
@@ -17,6 +21,9 @@ def pick_color(event,x,y,flags,param):
 
         image_mask = cv2.inRange(image_hsv,lower,upper)
         cv2.imshow("mask",image_mask)
+        cv2.setMouseCallback("mask", closeMask )
+    elif event == cv2.EVENT_RBUTTONDOWN and cv2.getWindowProperty("mask", cv2.WND_PROP_VISIBLE) != -1:
+        cv2.destroyWindow("mask")
 
 def main():
     import sys
@@ -26,7 +33,6 @@ def main():
     if image_src is None:
         print ("the image read is None............")
         return
-    cv2.imshow("bgr",image_src)
 
     ## NEW ##
     cv2.namedWindow('hsv')

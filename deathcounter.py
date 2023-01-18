@@ -139,7 +139,6 @@ def update_counter():
     upper_red = np.array([182, 141, 110])
     mask5 = cv2.inRange(image, lower_red, upper_red)
     
-
     mask = mask0+mask1+mask2+mask3+mask4+mask5
     
     output_img = image.copy()
@@ -204,7 +203,7 @@ def update_counter():
              
         detected = True
         
-    if running & detected:
+    if running and detected:
         root.after(10000, update_counter)
     elif running:
         root.after(750, update_counter)
