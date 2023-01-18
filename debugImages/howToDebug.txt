@@ -10,3 +10,5 @@ You can try to make the mask generation more precise by following these steps:
 It's also possible that the mask recognizes colors it isnt intended to, in that case you could experiment with removing parts of the mask.
 
 If the script doesnt work for your resolution you can try to change the image crop coordinates in the script
+You can use the imageCrop script for that.
+The script will export a JSON file which contains all the variables needed. You have to change the crop_file parameter in the config for the changes to activate.
