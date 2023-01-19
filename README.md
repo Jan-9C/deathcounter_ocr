@@ -110,7 +110,7 @@ This script can be used to generate color masks which can be used in deathcounte
 Usage (without .json or directory):
 
 ```console
-python maskgenerator.py <input file> <output file name>
+python maskgenerator.py <input file> <output file name> <number of exported masks>
 ```
 
 1. **Left click** on the part of the image that you want to make a mask of
