@@ -13,6 +13,9 @@ with open('config.json', 'r') as f:
 with open(config["crop_file"], 'r') as f:
     crop = json.load(f)    
 
+with open(config["mask_file"]) as f:
+    mask_file = json.load(f)
+
 tesseract_directory_path = config['tesseract_directory']
 debug_mode = config['debug_mode']
 compact_mode = config['compact_mode']
@@ -122,49 +125,14 @@ def update_counter():
     mask_upper = cv2.inRange(image, pixelvalue, upper)
     mask = mask_lower + mask_upper
     
-    # Mask 2
-    lower = np.array([165,222,72])
-    pixelvalue = np.array([175,232,112])
-    upper = np.array([185,242,152])
-    mask_lower = cv2.inRange(image, lower, pixelvalue)
-    mask_upper = cv2.inRange(image, pixelvalue, upper)
-    mask = mask + mask_lower + mask_upper
-    
-    # Mask 3
-    lower = np.array([162,121,30])
-    pixelvalue = np.array([172,131,70])
-    upper = np.array([182, 141, 110])
-    mask_lower = cv2.inRange(image, lower, pixelvalue)
-    mask_upper = cv2.inRange(image, pixelvalue, upper)
-    mask = mask + mask_lower + mask_upper
-    
-    # Mask 4
-    # [164 245  91] [174 255 131] [184 265 171]
-    lower = np.array([164,245,91])
-    pixelvalue = np.array([174,255,131])
-    upper = np.array([184, 265, 171])
-    mask_lower = cv2.inRange(image, lower, pixelvalue)
-    mask_upper = cv2.inRange(image, pixelvalue, upper)
-    mask = mask + mask_lower + mask_upper
-    
-    # Mask 5
-    # [165 166  63] [175 176 103] [185 186 143]
-    lower = np.array([165,166,63])
-    pixelvalue = np.array([175,176,103])
-    upper = np.array([185, 186, 143])
-    mask_lower = cv2.inRange(image, lower, pixelvalue)
-    mask_upper = cv2.inRange(image, pixelvalue, upper)
-    mask = mask + mask_lower + mask_upper
-    
-    # Mask 6
-    #[161 147  30] [171 157  70] [181 167 110]
-    lower = np.array([161,147,30])
-    pixelvalue = np.array([171,157,70])
-    upper = np.array([181, 167, 110])
-    mask_lower = cv2.inRange(image, lower, pixelvalue)
-    mask_upper = cv2.inRange(image, pixelvalue, upper)
-    mask = mask + mask_lower + mask_upper
-    
+    for element in mask_file:
+        lower = np.array(element["lower"])
+        pixelvalue = np.array(element["pixel"])
+        upper = np.array(element["upper"])
+        mask_lower = cv2.inRange(image, lower, pixelvalue)
+        mask_upper = cv2.inRange(image, pixelvalue, upper)
+        mask = mask + mask_lower + mask_upper
+        
     output_img = image.copy()
     output_img[np.where(mask==0)] = 0
     
