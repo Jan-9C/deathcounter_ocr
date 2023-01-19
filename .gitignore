@@ -7,3 +7,6 @@ successfull.png
 unsuccessfull.png
 my_crop.json
 gmask.json
+crops/
+generatedMasks/
+images/
