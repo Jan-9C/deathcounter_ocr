@@ -197,7 +197,7 @@ def update_counter():
         print("ldistance: " + str(ldistance))
     
     # Check for acceptable levenshtein distance
-    if ldistance > 7:
+    if ldistance >= 7:
         # Debug Info
         if(debug_mode == "enabled"):
             print("No valid text found")
