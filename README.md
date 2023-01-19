@@ -80,6 +80,46 @@ If you want to show the counter while streaming you just have to add the window 
 | "compact_mode":         | enabled/disabled  | Will remove all elements of the counter except the number of deaths from the display window if enabled                        |
 | "crop_file":            | name/path to file | Use to set the file which contains coodinates where image gets cropped (Standard: crop.json)                                  |
 
+---
+
+# Additional scripts
+
+The debugImages folder contains two additional python scripts:<br/>
+
+### cropimage.py
+
+This script can be used to export the coordinates you want to crop from an image. You can change the config to match the exported file to change where the screenshot gets cropped. <br/>
+
+Usage (without .json or directory):
+
+```console
+python cropimage.py <input file> <output file name>
+```
+
+1. **Left click** on the uppper left corner of the part you want to crop <br/>
+2. **Right click** on the lower right corner of the part you want to crop <br/>
+3. Crop coodinates get exported to debugImages/crops <br/>
+
+### maskgenerator.py
+
+**This script is currently work in progress** <br/>
+
+This script can be used to generate color masks which can be used in deathcounter.py to generate a complete mask which matches the death message. <br/>
+
+Usage (without .json or directory):
+
+```console
+python maskgenerator.py <input file> <output file name>
+```
+
+1. **Left click** on the part of the image that you want to make a mask of
+2. Inspect the opened windows which showcases what your mask would match
+3. Either confirm the export by **rightclicking** the mask image or close the window and start at step one again.
+
+Currently the file only exports a single mask in a .json file. The implementation for importing them into deathcounter.py and the implementation for generating more masks at once is still work in progress.
+
+---
+
 # Known Issues
 
 Sometimes the detection goes wrong, for this reason you can change the counter by changing the content of the deaths.txt file or use the integrated button to manually change the value. <br/>
