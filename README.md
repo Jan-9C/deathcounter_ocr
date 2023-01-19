@@ -102,7 +102,7 @@ python cropimage.py <input file> <output file name>
 
 ## maskgenerator.py
 
-**This script is currently work in progress** <br/>
+⚠️ **This script is currently work in progress** ⚠️ <br/>
 
 This script can be used to generate color masks which can be used in deathcounter.py to generate a complete mask which matches the death message. <br/>
 
