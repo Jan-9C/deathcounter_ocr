@@ -115,7 +115,8 @@ python maskgenerator.py <input file> <output file name> <number of exported mask
 
 1. **Left click** on the part of the image that you want to make a mask of
 2. Inspect the opened windows which showcases what your mask would match
-3. Either confirm the export by **rightclicking** the mask image or **close the window** and start at step one again.
+3. Either confirm the export by **rightclicking** the mask image or **close the window** and start at step one again
+4. If you want to export a bigger number of masks repeat from step one
 
 Currently the file only exports a single mask in a .json file. The implementation for importing them into deathcounter.py and the implementation for generating more masks at once is still work in progress.
 
