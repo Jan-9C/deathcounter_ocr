@@ -158,9 +158,41 @@ def update_counter():
     imgtext = pytesseract.image_to_string(image, lang='eng', config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2')
     ldistance = levenshtein(imgtext,"YOUDIED")
     
+    # Get the shape of the image
+    blackheight, blackwidth = np.shape(image)
+    
+    # Create a black image with the same shape as the input image
+    black_image = np.zeros((blackheight, blackwidth, 3), dtype=np.uint8)
+    black_image = cv2.cvtColor(np.array(black_image),cv2.COLOR_BGR2GRAY)
+    
+    
+    imageBlackR = image.copy()
+    
+    # Fill the left half of the image with black pixels
+    imageBlackR[:, :width//2] = black_image[:, :width//2]
+    
+    if(debug_mode == "enabled"):
+        cv2.imwrite("debugImages/images/imageBlackR.png", imageBlackR)
+    
+    imageBlackL = image.copy()
+    
+    # Fill the right half of the image with black pixels
+    imageBlackL[:, width//2:] = black_image[:, width//2:]
+    
+    if(debug_mode == "enabled"):
+        cv2.imwrite("debugImages/images/imageBlackL.png", imageBlackL)
+    
+    righthalftext = pytesseract.image_to_string(imageBlackR, lang='eng', config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2') 
+    lefthalftext = pytesseract.image_to_string(imageBlackL, lang='eng', config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2') 
+    
+    right_ldistance = levenshtein(righthalftext, "YOUDIED")
+    left_ldistance = levenshtein(lefthalftext, "YOUDIED")
+    
+    ldistance = min(ldistance, right_ldistance, left_ldistance)
+        
     # Debug Info 
     if(debug_mode == "enabled"):
-        print("Detected: " + imgtext)
+        print("Detected: " + lefthalftext + "|" + imgtext + "|" + righthalftext)
         print("ldistance: " + str(ldistance))
     
     # Check for acceptable levenshtein distance
@@ -173,7 +205,7 @@ def update_counter():
     elif ldistance < 6:
         # Debug Info
         if(debug_mode == "enabled"):
-            print("Valid Text found: " + imgtext)
+            print("Valid Text found: " + lefthalftext + "|" + imgtext + "|" + righthalftext)
         
         temp = 0
         
