@@ -6,7 +6,7 @@ The deathcounter doesn't interact with the game in any way and is therefore _com
 The deathcounter can be used for counting your deaths while livestreaming or just for yourself. <br/>
 In my tests there was _no noticable performance impact_.
 
-<br /><br />
+<br />
 
 # How does it work?
 
