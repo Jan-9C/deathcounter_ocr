@@ -116,7 +116,7 @@ python maskgenerator.py <input file> <output file name> <number of exported mask
 3. Either confirm the export by **rightclicking** the mask image or **close the window** and start at step one again
 4. If you want to export a bigger number of masks repeat from step one
 
-The implementation for importing them into deathcounter.py is still work in progress
+The files can be imported into deathcounter.py by selecting them through the config. The files of multiple images still have to be merged manually.
 
 ---
 
