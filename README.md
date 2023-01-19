@@ -1,10 +1,10 @@
 # deathcounter_eldenring_ocr
 
-A python script which detects death messages for Elden Ring by using *O*ptical *C*haracter *R*ecognition.
+A python script which detects death messages for Elden Ring by using **O**ptical **C**haracter **R**ecognition.
 The number of deaths is then displayed in a graphical user interfaces. The number of deaths is saved between sessions. <br/>
-The deathcounter doesn't interact with the game in any way and is therefore _compatible_ with _online play_. <br/>
+The deathcounter doesn't interact with the game in any way and is therefore **compatible** with **online play**. <br/>
 The deathcounter can be used for counting your deaths while livestreaming or just for yourself. <br/>
-In my tests there was _no noticable performance impact_.
+In my tests there was **no noticable performance impact**.
 
 <br />
 
@@ -14,10 +14,12 @@ Every 0.75 seconds the script takes a screenshot of your screen. The image gets 
 
 # Requirements:
 
-## 1) Install Python 3
+_The following installation guide is made with Windows in mind. If you use Linux I believe you will have no problem to get the script working even if the guide is made for windows._
 
-As this is a python script you need a working python installation on your machine.
-You can install the required version of python 3 from the [official website](https://www.python.org/downloads/) or download it from the microsoft store which is easier as is also installs pip.
+## 1) Install Python 3 and PIP
+
+As this is a python script you need a **working python installation** on your machine.
+You can install the required version of python 3 from the [official website](https://www.python.org/downloads/) or download it from the microsoft store which is **easier** as is also installs **pip**. If you get python from the website you have to install pip seperately [Guide](https://www.geeksforgeeks.org/how-to-install-pip-on-windows/).
 
 ## 2) Install Tesseract OCR
 
@@ -34,7 +36,7 @@ pip install opencv-python
 
 ## 4) Change set location of Tesseract OCR installation
 
-In _config.json_ you have to change the path to tesseract.exe so that it matches the setup on your machine("tesseract_directory": "YOUR_PATH"). Remember to double every \*\*
+In _config.json_ you have to change the path to tesseract.exe so that it matches the setup on your machine("tesseract_directory": "YOUR_PATH"). Remember to double every \*\*\*\*
 
 # Usage
 
