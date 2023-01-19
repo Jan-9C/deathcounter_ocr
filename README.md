@@ -18,12 +18,12 @@ _The following installation guide is made with Windows in mind. If you use Linux
 
 ## 1) Install Python 3 and PIP
 
-As this is a python script you need a **working python installation** on your machine.
-You can install the required version of python 3 from the [official website](https://www.python.org/downloads/) or download it from the microsoft store which is **easier** as is also installs **pip**. If you get python from the website you have to install pip seperately [Guide](https://www.geeksforgeeks.org/how-to-install-pip-on-windows/).
+As this is a python script you need a **working python installation** on your machine. <br/>
+You can install the required version of python 3 from the [official website](https://www.python.org/downloads/) or download it from the microsoft store which is **easier** as is also installs **pip**. If you get python from the website you have to install pip seperately [(guide)](https://www.geeksforgeeks.org/how-to-install-pip-on-windows/).
 
 ## 2) Install Tesseract OCR
 
-Install a version of _Tesseract OCR_ [(Download)](https://github.com/UB-Mannheim/tesseract/wiki) <br/>
+Install a version of **Tesseract OCR** [(Download)](https://github.com/UB-Mannheim/tesseract/wiki) <br/>
 You only need the english language package, all of the other available things you can choose are not necessary
 
 ## 3) Install required pip libraries
@@ -36,7 +36,7 @@ pip install opencv-python
 
 ## 4) Change set location of Tesseract OCR installation
 
-In _config.json_ you have to change the path to tesseract.exe so that it matches the setup on your machine("tesseract_directory": "YOUR_PATH"). Remember to double every \*\*\*\*
+In _config.json_ you have to change the path to tesseract.exe so that it matches the setup on your machine("tesseract_directory": "YOUR_PATH"). Remember to double every \
 
 # Usage
 
@@ -46,7 +46,7 @@ Use the following command while having a Command Line Interface open in the dire
 python deathcounter.py
 ```
 
-or
+or if you installed python from the official website:
 
 ```console
 py deathcounter.py
