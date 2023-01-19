@@ -204,19 +204,8 @@ def update_counter():
         if(debug_mode == "enabled"):
             print("Valid Text found: " + imgtext)
 
-        temp = 0
+        addDeath()
 
-        with open(file_path,"r") as file:
-            counter = file.read()
-            temp = int(counter)
-
-        temp = temp+1
-
-        with open(file_path,"w") as file:
-            file.write(str(temp))
-
-        deathLabel.config(text=str(temp))
-        deathLabel.update()
          # Debug Info
         if(debug_mode == "enabled"):
              cv2.imwrite("debugImages/successfull.png", image)
