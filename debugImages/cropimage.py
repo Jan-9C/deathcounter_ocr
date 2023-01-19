@@ -1,5 +1,6 @@
 import cv2
 import json
+import sys
 
 # This script is a modified version of colorpicker.py
 
@@ -21,24 +22,20 @@ def pick_crop(event,x,y,flags,param):
         cropYend = y
         crop['width'] = str(cropXend-int(crop['x']))
         crop['height'] = str(cropYend-int(crop['y']))
-        name = input("Choose the name of the JSON file (without .json): ")
-        if name != "":
-            print("Exporting JSON:")
-            print(crop)
-            with open('..\\' + name + ".json", 'w') as json_file:
-                json_file.write(json.dumps(crop))
-                exit(1)
-        else:
-            print("No name entered")
-            exit(0)
-        
+
+        print("Exporting JSON:")
+        print(crop)
+        with open('crops\\' + sys.argv[2] + ".json", 'w') as json_file:
+            json_file.write(json.dumps(crop))
+            exit(1)
+
 def main():
-    import sys
+    
     global image_rgb, crop # so we can use it in mouse callback
 
-    if len(sys.argv) == 1:
+    if len(sys.argv) < 3:
         print("Missing parameter")
-        print("Usage: python imageCrop.py <file>")
+        print("Usage: python imageCrop.py <file> <filename>")
         exit(0) 
 
     image_src = cv2.imread(sys.argv[1])  # imageCrop.py my.png
