@@ -59,15 +59,10 @@ You can acitvate the debug_mode with the parameter "enable" in config.json to se
 | Name                    | Values            | Usage                                                                                                                         |
 | ----------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | "tesseract_directory":  | directory path    | Use this to set the path to the directory your tesseract.exe is installed in                                                  |
-| ----------------------  | ---------------   | ----------------------------------------------------------------------------------------------------------------------------- |
 | "refresh_time":         | time in ms        | Use this to configure the time the program waits between taking screenshots. Lower values lead could lead to better detection |
-| ----------------------  | ---------------   | ----------------------------------------------------------------------------------------------------------------------------- |
 | "refresh_time_success": | time in ms        | Same as above but only gets used if a match is successfully detected                                                          |
-| ----------------------  | ---------------   | ----------------------------------------------------------------------------------------------------------------------------- |
 | "debug_mode":           | enabled/disabled  | Will print debug messages to console and output images for debugging to debugImages\ if enabled                               |
-| ----------------------  | ---------------   | ----------------------------------------------------------------------------------------------------------------------------- |
 | "compact_mode":         | enabled/disabled  | Will remove all elements of the counter except the number of deaths from the display window if enabled                        |
-| ----------------------  | ---------------   | ----------------------------------------------------------------------------------------------------------------------------- |
 | "crop_file":            | name/path to file | Use to set the file which contains coodinates where image gets cropped (Standard: crop.json)                                  |
 
 # Known Issues
