@@ -6,18 +6,26 @@ import tkinter as tk
 import os
 import json
 
+#Fetch configs
 with open('config.json', 'r') as f:
     config = json.load(f)
 
 with open(config["crop_file"], 'r') as f:
     crop = json.load(f)    
-    
+
 tesseract_directory_path = config['tesseract_directory']
 debug_mode = config['debug_mode']
 compact_mode = config['compact_mode']
+refresh_time = int(config['refresh_time'])
+refresh_time_success = int(config['refresh_time_success'])
 
+counter = 0
+running = True
+
+# Set tesseract path to exe
 pytesseract.pytesseract.tesseract_cmd = os.path.join(tesseract_directory_path, "tesseract.exe")
 
+# Initialize counter and deaths.txt
 script_dir = os.path.dirname(os.path.abspath(__file__))
 file_path = os.path.join(script_dir, "deaths.txt")
 
@@ -25,17 +33,12 @@ if not os.path.isfile("deaths.txt"):
     with open("deaths.txt", "w") as file:
         file.write("0")
 
-counter = 0
-
 with open(file_path,"r") as file:
     counter = file.read()
 
 # Debug Info  
 if(debug_mode == "enabled"):
     print("Start Value of Counter: " + counter)
-
-
-running = True
 
 # Function to generate levensthein distance between two Strings
 # in other words it returns how much the strings differ
@@ -81,6 +84,7 @@ def subDeath():
     with open(file_path, "w") as file:
         file.write(str(current))
 
+# Stop Button functionality
 def stop_scheduled_method():
     global running
     if running:
@@ -224,9 +228,9 @@ def update_counter():
         detected = True
         
     if running and detected:
-        root.after(10000, update_counter)
+        root.after(refresh_time_success, update_counter)
     elif running:
-        root.after(750, update_counter)
+        root.after(refresh_time, update_counter)
     
 
 root = tk.Tk()
