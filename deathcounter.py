@@ -152,8 +152,9 @@ def update_counter():
     image = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
     #Apply dilation and erosion to remove noise
     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3,3))
-    image = cv2.morphologyEx(image, cv2.MORPH_CLOSE, kernel, iterations=2)
-
+    image = cv2.morphologyEx(image, cv2.MORPH_CLOSE, kernel, iterations=3)
+    image = cv2.GaussianBlur(image, (5,5), 0)
+    
     # Read text from image
     imgtext = pytesseract.image_to_string(image, lang='eng', config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2')
     ldistance = levenshtein(imgtext,"YOUDIED")
