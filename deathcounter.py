@@ -116,7 +116,6 @@ def update_counter():
     if(debug_mode == "enabled"):
         cv2.imwrite("debugImages/images/cropped.png", image)
     
-    # TODO: add import of masks per .json and generate following codeblock automatically  
     # Mask 1
     lower = np.array([166,173,62])
     pixelvalue = np.array([176,183,102])
