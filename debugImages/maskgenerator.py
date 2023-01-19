@@ -2,23 +2,53 @@ import cv2
 import numpy as np
 import json
 import sys
+import os
 
-# THIS SCRIPT WAS NOT WRITTEN BY ME SOURCE: https://answers.opencv.org/question/134248/how-to-define-the-lower-and-upper-range-of-a-color/
+# This script is based on this forum post: https://answers.opencv.org/question/134248/how-to-define-the-lower-and-upper-range-of-a-color/
 image_hsv = None   # global ;(
 pixel = (20,60,80) # some stupid default
 data = {'lower': [-1,-1,-1], 'pixel': [-1,-1,-1], 'upper': [-1,-1,-1]}
+## TODO: Refactor program so that it doesnt generate unneccessary .json files and just merges them instantly
+def mergeJson():
+    filenames = []
+    for i in range(1,int(sys.argv[3])+1):
+        filenames.append("generatedMasks\\"+ sys.argv[2] +"_"+ str(i) + ".json")
+    
+    print(filenames)
+    
+    json_files = []
+    
+    for filename in filenames:
+        with open(filename) as json_file:
+            data = json.load(json_file)
+        json_files.append(data)
+    
+    with open("generatedMasks\\"+"merged_" + sys.argv[2] + ".json", "w") as f:
+        f.write(json.dumps(json_files))
+    
+    for filename in filenames:
+        os.remove(filename)
+    
+    exit()
 
 def exportData():
     global data
-    print("Exporting data to gmask.json")
+    global numberOfMasks
+    print("Exporting data ...")
     json_obj = json.dumps(data)
-    with open("generatedMasks\\" + sys.argv[2] + ".json", "w") as f:
-        f.write(json_obj) 
-    cv2.destroyAllWindows()
+    if numberOfMasks != 0:
+        with open("generatedMasks\\" + sys.argv[2] + "_"+ str(numberOfMasks) +".json", "w") as f:
+            f.write(json_obj)
+        cv2.destroyWindow("mask")
+        numberOfMasks = numberOfMasks -1
+        if numberOfMasks == 0:
+            mergeJson()
+        return
+    else:       
+        cv2.destroyAllWindows()
 
 def closeMask(event, x,y, flags, param):
     if event== cv2.EVENT_RBUTTONDOWN:
-        cv2.destroyWindow("mask")
         exportData()
 
 # mouse callback function
@@ -45,17 +75,24 @@ def pick_color(event,x,y,flags,param):
 
 def main():
     
-    global image_hsv, pixel  # so we can use it in mouse callback
+    global image_hsv, pixel, numberOfMasks, merge_numberOfMasks  # so we can use it in mouse callback
     
-    if len(sys.argv) < 3:
-        print("Usage: python colorpicker.py <input_file> <export_file>")
+    if len(sys.argv) < 4:
+        print("Usage: python maskgenerator.py <input_file> <export_file> <number of exported masks>")
         print("export file without .json")
         exit(0)
+        
+    if int(sys.argv[3]) < 1:
+          print("Usage: python maskgenerator.py <input_file> <export_file> <number of exported masks>")
+          print("Plase enter a valid amount of masks")
+          exit(0)
     
     image_src = cv2.imread(sys.argv[1])  # pick.py my.png
     if image_src is None:
         print ("the image read is None............")
         return
+
+    numberOfMasks = int(sys.argv[3])
 
     ## NEW ##
     cv2.namedWindow('hsv')
