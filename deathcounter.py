@@ -111,7 +111,7 @@ def update_counter():
    
     # Debug Info
     if(debug_mode == "enabled"):
-        cv2.imwrite("debugImages/cropped.png", image)
+        cv2.imwrite("debugImages/images/cropped.png", image)
     
     # TODO: add import of masks per .json and generate following codeblock automatically  
     # Mask 1
@@ -172,14 +172,14 @@ def update_counter():
 
     # Debug Info
     if(debug_mode == "enabled"):
-        cv2.imwrite("debugImages/mask.png", image)
+        cv2.imwrite("debugImages/images/mask.png", image)
     
     # Turn image grayscale
     image = cv2.cvtColor(np.array(image),cv2.COLOR_BGR2GRAY)
     
     # Debug Info
     if(debug_mode == "enabled"):
-        cv2.imwrite("debugImages/image_grayscale.png", image)
+        cv2.imwrite("debugImages/images/image_grayscale.png", image)
     
     # Black and White processing
     image = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
@@ -201,7 +201,7 @@ def update_counter():
         # Debug Info
         if(debug_mode == "enabled"):
             print("No valid text found")
-            cv2.imwrite("debugImages/unsuccessfull.png", image)
+            cv2.imwrite("debugImages/images/unsuccessfull.png", image)
 
     elif ldistance < 6:
         # Debug Info
@@ -223,7 +223,7 @@ def update_counter():
         deathLabel.update()
          # Debug Info
         if(debug_mode == "enabled"):
-             cv2.imwrite("debugImages/successfull.png", image)
+             cv2.imwrite("debugImages/images/successfull.png", image)
              
         detected = True
         
