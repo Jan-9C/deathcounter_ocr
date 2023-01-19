@@ -91,7 +91,7 @@ The debugImages folder contains two additional python scripts:<br/>
 
 This script can be used to export the coordinates you want to crop from an image. You can change the config to match the exported file to change where the screenshot gets cropped. <br/>
 
-Usage (without .json or directory):
+Usage:
 
 ```console
 python cropimage.py <input file> <output file name>
@@ -105,7 +105,7 @@ python cropimage.py <input file> <output file name>
 
 This script can be used to generate color masks which can be used in deathcounter.py to generate a complete mask which matches the death message. <br/>
 
-Usage (without .json or directory):
+Usage:
 
 ```console
 python maskgenerator.py <input file> <output file name> <number of exported masks>
