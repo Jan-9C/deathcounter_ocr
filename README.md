@@ -66,7 +66,7 @@ py deathcounter.py
 ```
 
 If you want to show the counter while streaming you just have to add the window which displays the counter as a source in OBS.<br/>
-If you want to reset the counter without spamming -1, you can just change the value of **deaths.txt** which is located in the same directory as the script<br/>
+If you want to reset the counter without spamming -1, you can just change the value of **deaths.txt**, which is located in the same directory as the script<br/>
 
 ---
 
