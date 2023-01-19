@@ -24,12 +24,12 @@ _The following installation guide is made with Windows in mind. If you use Linux
 ## 1) Install Python 3 and PIP
 
 As this is a python script you need a **working python installation** on your machine. <br/>
-You can install the required version of python 3 from the [official website](https://www.python.org/downloads/) or download it from the microsoft store which is **easier** as is also installs **pip**. If you get python from the website you have to install pip seperately [(guide)](https://www.geeksforgeeks.org/how-to-install-pip-on-windows/).
+You can install the required version of python 3 from the [official website](https://www.python.org/downloads/) or download it from the microsoft store which is **easier** as it also installs **pip**. If you get python from the website you have to install pip seperately [(guide)](https://www.geeksforgeeks.org/how-to-install-pip-on-windows/).
 
 ## 2) Install Tesseract OCR
 
 Install a version of **Tesseract OCR** [(Download)](https://github.com/UB-Mannheim/tesseract/wiki) <br/>
-You only need the english language package, all of the other available things you can choose are not necessary
+You only need to install the english language package, all of the other available things you can choose are not necessary
 
 ## 3) Install required pip libraries
 
@@ -47,7 +47,7 @@ pip install opencv-python
 
 ## 4) Change set location of Tesseract OCR installation
 
-In _config.json_ you have to change the path to tesseract.exe so that it matches the setup on your machine("tesseract_directory": "YOUR_PATH"). Remember to double every \
+In **config.json** you have to change the path to tesseract.exe so that it matches the setup on your machine("tesseract_directory": "YOUR_PATH"). Remember to double every \
 
 ---
 
@@ -66,6 +66,7 @@ py deathcounter.py
 ```
 
 If you want to show the counter while streaming you just have to add the window which displays the counter as a source in OBS.<br/>
+If you want to reset the counter without spamming -1, you can just change the value of **deaths.txt** which is located in the same directory as the script<br/>
 
 ---
 
@@ -114,7 +115,7 @@ python maskgenerator.py <input file> <output file name>
 
 1. **Left click** on the part of the image that you want to make a mask of
 2. Inspect the opened windows which showcases what your mask would match
-3. Either confirm the export by **rightclicking** the mask image or close the window and start at step one again.
+3. Either confirm the export by **rightclicking** the mask image or **close the window** and start at step one again.
 
 Currently the file only exports a single mask in a .json file. The implementation for importing them into deathcounter.py and the implementation for generating more masks at once is still work in progress.
 
