@@ -8,6 +8,9 @@ In my tests there was **no noticable performance impact**.
 
 <br />
 
+![Mask](./README_images/readmeMask.png)
+![OCR ready](./README_images/readmeSuccessfull.png)
+
 ---
 
 # How does it work?
