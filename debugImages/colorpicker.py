@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import json
 
 # THIS SCRIPT WAS NOT WRITTEN BY ME SOURCE: https://answers.opencv.org/question/134248/how-to-define-the-lower-and-upper-range-of-a-color/
 image_hsv = None   # global ;(
@@ -18,7 +19,18 @@ def pick_color(event,x,y,flags,param):
         upper =  np.array([pixel[0] + 10, pixel[1] + 10, pixel[2] + 40])
         lower =  np.array([pixel[0] - 10, pixel[1] - 10, pixel[2] - 40])
         print(lower, pixel, upper)
-
+         
+        array1 = lower
+        array2 = pixel
+        array3 = upper
+        
+        data = {'lower': array1.tolist(), 'pixel': array2.tolist(), 'upper': array3.tolist()}
+        
+        json_obj = json.dumps(data)
+        
+        with open("generatedMasks\gmask.json", "w") as f:
+            f.write(json_obj)
+        
         image_mask = cv2.inRange(image_hsv,lower,upper)
         cv2.imshow("mask",image_mask)
         cv2.setMouseCallback("mask", closeMask )
