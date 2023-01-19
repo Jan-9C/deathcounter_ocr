@@ -86,7 +86,7 @@ If you want to show the counter while streaming you just have to add the window 
 
 The debugImages folder contains two additional python scripts:<br/>
 
-### cropimage.py
+## cropimage.py
 
 This script can be used to export the coordinates you want to crop from an image. You can change the config to match the exported file to change where the screenshot gets cropped. <br/>
 
@@ -100,7 +100,7 @@ python cropimage.py <input file> <output file name>
 2. **Right click** on the lower right corner of the part you want to crop <br/>
 3. Crop coodinates get exported to debugImages/crops <br/>
 
-### maskgenerator.py
+## maskgenerator.py
 
 **This script is currently work in progress** <br/>
 
