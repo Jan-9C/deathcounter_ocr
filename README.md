@@ -8,6 +8,8 @@ In my tests there was **no noticable performance impact**.
 
 <br />
 
+---
+
 # How does it work?
 
 Every 0.75 seconds the script takes a screenshot of your screen. The image gets cropped so that it only consists of the part of the screen where the death message appears. A mask corrosponding to the color of the death message gets generated. The mask is turned grayscale. After that the black and white values get filtered to be more readable for the OCR Algorithm. The processed image is then passed to the OCR algorithm and the result is passed to the counter.
@@ -30,13 +32,21 @@ You only need the english language package, all of the other available things yo
 
 ```console
 pip install pytesseract
+```
+
+```console
 pip install PyAutoGUI
+```
+
+```console
 pip install opencv-python
 ```
 
 ## 4) Change set location of Tesseract OCR installation
 
 In _config.json_ you have to change the path to tesseract.exe so that it matches the setup on your machine("tesseract_directory": "YOUR_PATH"). Remember to double every \
+
+---
 
 # Usage
 
@@ -54,9 +64,11 @@ py deathcounter.py
 
 If you want to show the counter while streaming you just have to add the window which displays the counter as a source in OBS.<br/>
 
+---
+
 # config.json
 
-| Name                    | Values            | Usage                                                                                                                         |
+| Name                    | Value             | Usage                                                                                                                         |
 | ----------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | "tesseract_directory":  | directory path    | Use this to set the path to the directory your tesseract.exe is installed in                                                  |
 | "refresh_time":         | time in ms        | Use this to configure the time the program waits between taking screenshots. Lower values lead could lead to better detection |
