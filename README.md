@@ -90,11 +90,12 @@ If you want to reset the counter without spamming -1, you can just change the va
 
 # Additional scripts
 
-The debugImages folder contains two additional python scripts:<br/>
+The debugImages folder contains three additional python scripts:<br/>
 
 ## cropimage.py
 
 This script can be used to export the coordinates you want to crop from an image. You can change the config to match the exported file to change where the screenshot gets cropped. <br/>
+Files are exported to debugImages/crops <br/>
 
 Usage:
 
@@ -109,6 +110,7 @@ python cropimage.py <input file> <output file name>
 ## maskgenerator.py
 
 This script can be used to generate color masks which can be used in deathcounter.py to generate a complete mask which matches the death message. <br/>
+Files are exported to debugImages/generatedMasks <br/>
 
 Usage:
 
@@ -122,6 +124,17 @@ python maskgenerator.py <input file> <output file name> <number of exported mask
 4. If you want to export a bigger number of masks repeat from step one
 
 The files can be imported into deathcounter.py by selecting them through the config. The files of multiple images still have to be merged manually.
+
+## maskmerger.py
+
+This script can be used to merge the masks generated for specific images into one completed json file you can use for deathcounter.py by selecting it in config.json <br/>
+Files are exported to debugImages/completedMasks <br/>
+
+Usage:
+
+```console
+python maskmerger.py <output file name> <input file1> <input file2> <...>
+```
 
 ---
 
