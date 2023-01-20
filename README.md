@@ -127,6 +127,8 @@ The files can be imported into deathcounter.py by selecting them through the con
 
 ## maskmerger.py
 
+WORK IN PROGRESS
+
 This script can be used to merge the masks generated for specific images into one completed json file you can use for deathcounter.py by selecting it in config.json <br/>
 Files are exported to debugImages/completedMasks <br/>
 
