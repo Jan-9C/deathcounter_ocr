@@ -124,6 +124,7 @@ def update_counter():
     mask_upper = cv2.inRange(image, pixelvalue, upper)
     mask = mask_lower + mask_upper
     
+    ## TODO: Optimize fetching of values so that it isnt executed everytime updateCounter() is called
     for element in mask_file:
         lower = np.array(element["lower"])
         pixelvalue = np.array(element["pixel"])
