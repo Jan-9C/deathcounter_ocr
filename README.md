@@ -84,6 +84,7 @@ If you want to reset the counter without spamming -1, you can just change the va
 | "debug_mode":           | enabled/disabled  | Will print debug messages to console and output images for debugging to debugImages\images if enabled                         |
 | "compact_mode":         | enabled/disabled  | Will remove all elements of the counter except the number of deaths from the display window if enabled                        |
 | "crop_file":            | name/path to file | Use to set the file which contains coodinates where image gets cropped (Standard: crop.json)                                  |
+| "mask_file":            | name/path to file | Use to set file which contains the merged masks, which you want to use for generating your masks in deathcounter.py           |
 
 ---
 
