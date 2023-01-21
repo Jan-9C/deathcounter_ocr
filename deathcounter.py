@@ -198,13 +198,13 @@ def update_counter():
         print("ldistance: " + str(ldistance))
     
     # Check for acceptable levenshtein distance
-    if ldistance >= 7:
+    if ldistance >= 6:
         # Debug Info
         if(debug_mode == "enabled"):
             print("No valid text found")
             cv2.imwrite("debugImages/images/unsuccessfull.png", image)
 
-    elif ldistance < 7:
+    elif ldistance < 6:
         # Debug Info
         if(debug_mode == "enabled"):
             print("Valid Text found: " + lefthalftext + "|" + imgtext + "|" + righthalftext)
