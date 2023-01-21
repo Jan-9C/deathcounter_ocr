@@ -7,8 +7,8 @@ The deathcounter can be used for counting your deaths while livestreaming or jus
 In my tests there was **no noticable performance impact**.
 
 ⚠️**DISCLAIMER: THIS PROGRAM IS STILL WORK IN PROGRESS**⚠️ <br/>
-I still have not perfected the mask generation. So far i programmed tools to make that process earlier, but at this time i am not able to test the functionality in the game by myself. If you want to help me you can experiment with generating your own mask.json file with the help of maskgenerator.py or mess with the post processing in deathcounter.py <br/> The program should work but won´t work 100% of the time. One thing you could also do is lower the refresh_time in config.json. This could improve detection, but could have more impact on required system resources. <br/>
-If you have feedback to improve the algorithm just open a issue and let me know :) <br/>
+I still have not perfected the mask generation. So far i programmed tools to make that process earlier, but at this time i am not able to test the functionality in the game by myself. If you want to help me you can experiment with generating your own mask.json file with the help of maskgenerator.py or mess with the post processing in deathcounter.py <br/> The program should work but won´t work 100% of the time. One thing you could also do is lower the refresh_time in config.json. This could improve detection, but will have more impact on required system resources. The resources needed will still not be that much but keep it in mind. <br/>
+If you have feedback to improve the algorithm just open an issue and let me know :) <br/>
 
 <br />
 
