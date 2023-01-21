@@ -143,7 +143,7 @@ python maskmerger.py <output file name> <input file1> <input file2> <...>
 
 ---
 
-# How to adapt the counter to a diffrent game
+# How to adapt the counter to a different game
 
 With the scripts mentioned above it is possible to adapt the deathcounter script to work with any game that has a death screen if you follow these steps:
 
