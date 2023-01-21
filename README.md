@@ -85,6 +85,7 @@ If you want to reset the counter without spamming -1, you can just change the va
 | "compact_mode":         | enabled/disabled  | Will remove all elements of the counter except the number of deaths from the display window if enabled                        |
 | "crop_file":            | name/path to file | Use to set the file which contains coodinates where image gets cropped (Standard: crop.json)                                  |
 | "mask_file":            | name/path to file | Use to set file which contains the merged masks, which you want to use for generating your masks in deathcounter.py           |
+| "ocr_string":           | matched string    | Use to set the String / Word you want the script to look for                                                                  |
 
 ---
 
@@ -140,7 +141,16 @@ python maskmerger.py <output file name> <input file1> <input file2> <...>
 
 ---
 
-# Known Issues
+# How to adapt the counter to a diffrent game
+
+With the scripts mentioned above it is possible to adapt the deathcounter script to work with any game that has a death screen if you follow these steps:
+
+1. Take a screenshot of the "death screen"
+2. use cropimage.py to export a file which contains the right coordinates to crop the image so that it includes the "death message" and change the config file accordingly
+3. Use maskgenerator.py and maskmerger.py to generate the matching mask files for your death message and change the config file accodingly
+4. Change ocr_string in the config to match the one displayed in your death message
+
+# Known Limitations
 
 Sometimes the detection goes wrong, for this reason you can change the counter by changing the content of the deaths.txt file or use the integrated button to manually change the value. <br/>
 

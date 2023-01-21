@@ -5,5 +5,6 @@
     "debug_mode": "disabled",
     "compact_mode": "disabled",
     "crop_file":"crop.json",
-    "mask_file":"mask.json"
+    "mask_file":"mask.json",
+    "ocr_string": "YOUDIED"
 }

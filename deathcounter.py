@@ -21,6 +21,7 @@ debug_mode = config['debug_mode']
 compact_mode = config['compact_mode']
 refresh_time = int(config['refresh_time'])
 refresh_time_success = int(config['refresh_time_success'])
+ocr_string = config["ocr_string"]
 
 counter = 0
 running = True
@@ -158,7 +159,7 @@ def update_counter():
     
     # Read text from image
     imgtext = pytesseract.image_to_string(image, lang='eng', config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2')
-    ldistance = levenshtein(imgtext,"YOUDIED")
+    ldistance = levenshtein(imgtext, ocr_string)
     
     # Get the shape of the image
     blackheight, blackwidth = np.shape(image)
@@ -187,8 +188,8 @@ def update_counter():
     righthalftext = pytesseract.image_to_string(imageBlackR, lang='eng', config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2') 
     lefthalftext = pytesseract.image_to_string(imageBlackL, lang='eng', config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2') 
     
-    right_ldistance = levenshtein(righthalftext, "YOUDIED")
-    left_ldistance = levenshtein(lefthalftext, "YOUDIED")
+    right_ldistance = levenshtein(righthalftext, ocr_string)
+    left_ldistance = levenshtein(lefthalftext, ocr_string)
     
     ldistance = min(ldistance, right_ldistance, left_ldistance)
         
