@@ -63,7 +63,7 @@ Use the following command while having a Command Line Interface open in the dire
 python deathcounter.py
 ```
 
-or if you installed python from the official website:
+or:
 
 ```console
 py deathcounter.py
