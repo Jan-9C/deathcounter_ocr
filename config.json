@@ -1,7 +1,7 @@
 {
     "tesseract_directory": "D:\\Tesseract",
-    "refresh_time": "750",
-    "refresh_time_success": "10000",
+    "refresh_time": "300",
+    "refresh_time_success": "6000",
     "debug_mode": "disabled",
     "compact_mode": "disabled",
     "crop_file":"crop.json",
