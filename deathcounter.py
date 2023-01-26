@@ -11,7 +11,7 @@ with open('config.json', 'r') as f:
     config = json.load(f)
 
 with open(config["crop_file"], 'r') as f:
-    crop = json.load(f)    
+    crop = json.load(f)
 
 with open(config["mask_file"]) as f:
     mask_file = json.load(f)
@@ -61,17 +61,17 @@ def levenshtein(s1, s2):
                 d[i][j] = min(d[i - 1][j], d[i][j - 1], d[i - 1][j - 1]) + 1
     return d[m][n]
 
-    
+
 def addDeath():
     current = 0
     with open(file_path,"r") as file:
         current = int(file.read())
-    
+
     current = current + 1
-    
+
     deathLabel.config(text=str(current))
     deathLabel.update()
-    
+
     with open(file_path, "w") as file:
         file.write(str(current))
 
@@ -79,12 +79,12 @@ def subDeath():
     current = 0
     with open(file_path,"r") as file:
         current = int(file.read())
-    
+
     current = current - 1
-    
+
     deathLabel.config(text=str(current))
     deathLabel.update()
-    
+
     with open(file_path, "w") as file:
         file.write(str(current))
 
@@ -102,8 +102,9 @@ def stop_scheduled_method():
 def update_counter():
     detected = False
     # take screenshot using pyautogui
+
     image = pyautogui.screenshot(region=(0, 0, 1920, 1080))
-    
+
     image = cv2.cvtColor(np.array(image),cv2.COLOR_BGR2HSV_FULL)
     # Image crop coodinates
     x=int(crop["x"])
@@ -112,11 +113,11 @@ def update_counter():
     height=int(crop["height"])
     # Crop the image
     image = image[y:y+height, x:x+width]
-   
+
     # Debug Info
     if(debug_mode == "enabled"):
         cv2.imwrite("debugImages/images/cropped.png", image)
-    
+
     # Mask 1
     lower = np.array([166,173,62])
     pixelvalue = np.array([176,183,102])
@@ -124,7 +125,7 @@ def update_counter():
     mask_lower = cv2.inRange(image, lower, pixelvalue)
     mask_upper = cv2.inRange(image, pixelvalue, upper)
     mask = mask_lower + mask_upper
-    
+
     ## TODO: Optimize fetching of values so that it isnt executed everytime updateCounter() is called
     for element in mask_file:
         lower = np.array(element["lower"])
@@ -133,71 +134,72 @@ def update_counter():
         mask_lower = cv2.inRange(image, lower, pixelvalue)
         mask_upper = cv2.inRange(image, pixelvalue, upper)
         mask = mask + mask_lower + mask_upper
-        
+
     output_img = image.copy()
     output_img[np.where(mask==0)] = 0
-    
+
     image = output_img
 
     # Debug Info
     if(debug_mode == "enabled"):
         cv2.imwrite("debugImages/images/mask.png", image)
-    
+
     # Turn image grayscale
     image = cv2.cvtColor(np.array(image),cv2.COLOR_BGR2GRAY)
-    
+
     # Debug Info
     if(debug_mode == "enabled"):
         cv2.imwrite("debugImages/images/image_grayscale.png", image)
-    
+
     # Black and White processing
     image = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
     #Apply dilation and erosion to remove noise
     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3,3))
     image = cv2.morphologyEx(image, cv2.MORPH_CLOSE, kernel, iterations=3)
     image = cv2.GaussianBlur(image, (5,5), 0)
-    
+
     # Read text from image
     imgtext = pytesseract.image_to_string(image, lang='eng', config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2')
+
     ldistance = levenshtein(imgtext, ocr_string)
-    
+
     # Get the shape of the image
     blackheight, blackwidth = np.shape(image)
-    
+
     # Create a black image with the same shape as the input image
     black_image = np.zeros((blackheight, blackwidth, 3), dtype=np.uint8)
     black_image = cv2.cvtColor(np.array(black_image),cv2.COLOR_BGR2GRAY)
-    
-    
+
+
     imageBlackR = image.copy()
-    
+
     # Fill the left half of the image with black pixels
     imageBlackR[:, :width//2] = black_image[:, :width//2]
-    
+
     if(debug_mode == "enabled"):
         cv2.imwrite("debugImages/images/imageBlackR.png", imageBlackR)
-    
+
     imageBlackL = image.copy()
-    
+
     # Fill the right half of the image with black pixels
     imageBlackL[:, width//2:] = black_image[:, width//2:]
-    
+
     if(debug_mode == "enabled"):
         cv2.imwrite("debugImages/images/imageBlackL.png", imageBlackL)
-    
+
     righthalftext = pytesseract.image_to_string(imageBlackR, lang='eng', config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2') 
     lefthalftext = pytesseract.image_to_string(imageBlackL, lang='eng', config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2') 
-    
+
     right_ldistance = levenshtein(righthalftext, ocr_string)
     left_ldistance = levenshtein(lefthalftext, ocr_string)
-    
+
     ldistance = min(ldistance, right_ldistance, left_ldistance)
-        
+
     # Debug Info 
     if(debug_mode == "enabled"):
         print("Detected: " + lefthalftext + "|" + imgtext + "|" + righthalftext)
         print("ldistance: " + str(ldistance))
-    
+
     # Check for acceptable levenshtein distance
     if ldistance >= 6:
         # Debug Info
@@ -209,31 +211,19 @@ def update_counter():
         # Debug Info
         if(debug_mode == "enabled"):
             print("Valid Text found: " + lefthalftext + "|" + imgtext + "|" + righthalftext)
-        
-        temp = 0
-        
-        with open(file_path,"r") as file:
-            counter = file.read()
-            temp = int(counter)
-            
-        temp = temp+1
-        
-        with open(file_path,"w") as file:
-            file.write(str(temp))
-        
-        deathLabel.config(text=str(temp))
-        deathLabel.update()
-         # Debug Info
+
+        addDeath()
+
+        # Debug Info
         if(debug_mode == "enabled"):
              cv2.imwrite("debugImages/images/successfull.png", image)
-             
+
         detected = True
-        
+
     if running and detected:
         root.after(refresh_time_success, update_counter)
     elif running:
         root.after(refresh_time, update_counter)
-    
 
 root = tk.Tk()
 root.config(bg="#1b1c1b")
@@ -249,7 +239,7 @@ if compact_mode!="enabled":
     titleLabel.config(text="Deaths",font=("Times New Roman", 20), fg="#a01616", bg="#1b1c1b")
     titleLabel.pack()
     titleLabel.place(relx=.5, rely=.35, anchor="center")
-    
+
     stopButton = tk.Button(root)
     stopButton.config(text="Stop", command=stop_scheduled_method, font=("Times New Roman", 10), fg="#a01616", bg="#1b1c1b")
     stopButton.pack()
@@ -264,7 +254,7 @@ if compact_mode!="enabled":
     subButton.config(text="-1", command=subDeath, fg="#a01616", font=("Times New Roman", 10), bg="#1b1c1b")
     subButton.pack()
     subButton.place(relx=.7, rely=.7, anchor="center")
-    
+
 deathLabel = tk.Label(root)
 deathLabel.config(text=counter,font=("Times New Roman", 20), fg="#a01616", bg="#1b1c1b")
 deathLabel.pack()
