@@ -24,7 +24,7 @@ refresh_time_success = int(config['refresh_time_success'])
 ocr_string = config["ocr_string"]
 
 counter = 0
-running = True
+running = False
 
 # Set tesseract path to exe
 pytesseract.pytesseract.tesseract_cmd = os.path.join(tesseract_directory_path, "tesseract.exe")
@@ -241,7 +241,7 @@ if compact_mode!="enabled":
     titleLabel.place(relx=.5, rely=.35, anchor="center")
 
     stopButton = tk.Button(root)
-    stopButton.config(text="Stop", command=stop_scheduled_method, font=("Times New Roman", 10), fg="#a01616", bg="#1b1c1b")
+    stopButton.config(text="Start", command=stop_scheduled_method, font=("Times New Roman", 10), fg="#a01616", bg="#1b1c1b")
     stopButton.pack()
     stopButton.place(relx=.5, rely=.7, anchor="center")
 
