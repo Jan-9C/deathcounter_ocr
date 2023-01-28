@@ -155,6 +155,7 @@ With the scripts mentioned above it is possible to adapt the deathcounter script
 1. Install the needed Tesseract language package you need
 2. Change the image crop coordinates to fit the message
 3. Change the config parameter "language" so that it matches the language code of the language you want to use
+4. Change the "ocr_string" parameter in the config to match the shown death message
 
 ***Tesseract supports many languages, here are some examples of the language codes that you can use:***
 
