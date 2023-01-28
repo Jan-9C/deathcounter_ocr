@@ -23,6 +23,7 @@ refresh_time = int(config['refresh_time'])
 refresh_time_success = int(config['refresh_time_success'])
 ocr_string = config["ocr_string"]
 language = config["language"]
+levenshtein_d = int(config["levensthein_d"])
 
 counter = 0
 running = False
@@ -202,13 +203,13 @@ def update_counter():
         print("ldistance: " + str(ldistance))
 
     # Check for acceptable levenshtein distance
-    if ldistance >= 6:
+    if ldistance >= levenshtein_d:
         # Debug Info
         if(debug_mode == "enabled"):
             print("No valid text found")
             cv2.imwrite("debugImages/images/unsuccessfull.png", image)
 
-    elif ldistance < 6:
+    elif ldistance < levenshtein_d:
         # Debug Info
         if(debug_mode == "enabled"):
             print("Valid Text found: " + lefthalftext + "|" + imgtext + "|" + righthalftext)
