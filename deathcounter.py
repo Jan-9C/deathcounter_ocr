@@ -40,7 +40,7 @@ if not os.path.isfile("deaths.txt"):
 with open(file_path,"r") as file:
     counter = file.read()
 
-# Debug Info  
+# Debug Info
 if(debug_mode == "enabled"):
     print("Start Value of Counter: " + counter)
 
@@ -93,7 +93,7 @@ def stop_scheduled_method():
     global running
     if running:
         running = False
-        stopButton.config(text="Resume")
+        stopButton.config(text="Start")
     else:
         running = True
         stopButton.config(text="Stop")
@@ -187,15 +187,15 @@ def update_counter():
     if(debug_mode == "enabled"):
         cv2.imwrite("debugImages/images/imageBlackL.png", imageBlackL)
 
-    righthalftext = pytesseract.image_to_string(imageBlackR, lang='eng', config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2') 
-    lefthalftext = pytesseract.image_to_string(imageBlackL, lang='eng', config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2') 
+    righthalftext = pytesseract.image_to_string(imageBlackR, lang='eng', config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2')
+    lefthalftext = pytesseract.image_to_string(imageBlackL, lang='eng', config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2')
 
     right_ldistance = levenshtein(righthalftext, ocr_string)
     left_ldistance = levenshtein(lefthalftext, ocr_string)
 
     ldistance = min(ldistance, right_ldistance, left_ldistance)
 
-    # Debug Info 
+    # Debug Info
     if(debug_mode == "enabled"):
         print("Detected: " + lefthalftext + "|" + imgtext + "|" + righthalftext)
         print("ldistance: " + str(ldistance))
