@@ -149,7 +149,12 @@ With the scripts mentioned above it is possible to adapt the deathcounter script
 5. You may have to change the "refresh_time_success" parameter in the config to a higher number, if the game displays the message for longer. If you dont it could lead to 2 or more detections of one death message
 
 # How to adapt the counter to a different language
-1. Install the needed Tesseract language package you need
+
+**If you adapted the script to a different game or language please feel free to submit a pull request to add your configs to this repository and maybe help out other people**
+
+There is  a preconfigured config for the german version of Elden Ring in the alternativeConfigs/Games/Elden Ring folder which you can use.
+
+1. Install the needed Tesseract language package
 2. Change the image crop coordinates to fit the message
 3. Change the config parameter "language" so that it matches the language code of the language you want to use
 4. Change the "ocr_string" parameter in the config to match the shown death message
@@ -173,4 +178,4 @@ Sometimes the detection goes wrong, for this reason you can change the counter b
 
 The script only works if you use the resolution 1920x1080. If you use a different resolution you have to change the image crop coordinates, which can be configured by using the python script provided in debugImages\ and the config to crop out the correct part of the screen. <br/>
 
-Currently only works with the english version of the game. <br/>
+Preconfigured version only works with the english version of Elden Ring. But the script can be adapted to any language and any game that has a identifiable text as a death message. <br/>
