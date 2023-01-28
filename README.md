@@ -35,7 +35,7 @@ You can install the required version of python 3 from the [official website](htt
 ## 2) Install Tesseract OCR
 
 Install a version of **Tesseract OCR** [(Download)](https://github.com/UB-Mannheim/tesseract/wiki) <br/>
-You only need to install the english language package, all of the other available things you can choose are not necessary
+Install the language package you want to use. To use the preconfigured script download the english package. Detailed explanations for changing the language of the detected death message below.
 
 ## 3) Install required pip libraries
 
@@ -88,6 +88,7 @@ If you want to reset the counter without spamming -1, you can just change the va
 | "crop_file":            | name/path to file | Use to set the file which contains coodinates where image gets cropped (Standard: crop.json)                                  |
 | "mask_file":            | name/path to file | Use to set file which contains the merged masks, which you want to use for generating your masks in deathcounter.py           |
 | "ocr_string":           | matched string    | Use to set the String / Word you want the script to look for                                                                  |
+| "language":             | language code     | Use this to set the language you want Tesseract to use (needs language packet installed with Tesseract)                       |    
 
 ---
 
@@ -130,8 +131,6 @@ The files can be imported into deathcounter.py by selecting them through the con
 
 ## maskmerger.py
 
-WORK IN PROGRESS
-
 This script can be used to merge the masks generated for specific images into one completed json file you can use for deathcounter.py by selecting it in config.json <br/>
 Files are exported to debugImages/completedMasks <br/>
 
@@ -151,6 +150,23 @@ With the scripts mentioned above it is possible to adapt the deathcounter script
 2. use cropimage.py to export a file which contains the right coordinates to crop the image so that it includes the "death message" and change the config file accordingly
 3. Use maskgenerator.py and maskmerger.py to generate the matching mask files for your death message and change the config file accodingly
 4. Change ocr_string in the config to match the one displayed in your death message
+
+# How to adapt the counter to a different language
+1. Install the needed Tesseract language package you need
+2. Change the image crop coordinates to fit the message
+3. Change the config parameter "language" so that it matches the language code of the language you want to use
+
+***Tesseract supports many languages, here are some examples of the language codes that you can use:***
+
+    eng for English
+    spa for Spanish
+    fra for French
+    deu for German
+    jpn for Japanese
+    chi_sim for Simplified Chinese
+    chi_tra for Traditional Chinese
+
+You can find a full list of language codes that are supported by Tesseract in the tessdata repository on GitHub (https://github.com/tesseract-ocr/tessdata)
 
 # Known Limitations
 

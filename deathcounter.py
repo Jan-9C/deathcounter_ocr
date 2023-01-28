@@ -22,6 +22,7 @@ compact_mode = config['compact_mode']
 refresh_time = int(config['refresh_time'])
 refresh_time_success = int(config['refresh_time_success'])
 ocr_string = config["ocr_string"]
+language = config["language"]
 
 counter = 0
 running = False
@@ -159,7 +160,7 @@ def update_counter():
     image = cv2.GaussianBlur(image, (5,5), 0)
 
     # Read text from image
-    imgtext = pytesseract.image_to_string(image, lang='eng', config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2')
+    imgtext = pytesseract.image_to_string(image, lang=language, config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2')
 
     ldistance = levenshtein(imgtext, ocr_string)
 
@@ -187,8 +188,8 @@ def update_counter():
     if(debug_mode == "enabled"):
         cv2.imwrite("debugImages/images/imageBlackL.png", imageBlackL)
 
-    righthalftext = pytesseract.image_to_string(imageBlackR, lang='eng', config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2')
-    lefthalftext = pytesseract.image_to_string(imageBlackL, lang='eng', config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2')
+    righthalftext = pytesseract.image_to_string(imageBlackR, lang=language, config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2')
+    lefthalftext = pytesseract.image_to_string(imageBlackL, lang=language, config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2')
 
     right_ldistance = levenshtein(righthalftext, ocr_string)
     left_ldistance = levenshtein(lefthalftext, ocr_string)
@@ -212,13 +213,14 @@ def update_counter():
         if(debug_mode == "enabled"):
             print("Valid Text found: " + lefthalftext + "|" + imgtext + "|" + righthalftext)
 
+        detected = True
         addDeath()
 
         # Debug Info
         if(debug_mode == "enabled"):
              cv2.imwrite("debugImages/images/successfull.png", image)
 
-        detected = True
+        
 
     if running and detected:
         root.after(refresh_time_success, update_counter)

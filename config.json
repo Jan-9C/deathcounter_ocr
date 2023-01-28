@@ -1,10 +1,11 @@
 {
-    "tesseract_directory": "D:\\Tesseract",
+    "tesseract_directory": "E:\\Tesseract",
     "refresh_time": "300",
     "refresh_time_success": "6000",
     "debug_mode": "disabled",
     "compact_mode": "disabled",
     "crop_file":"crop.json",
     "mask_file":"mask.json",
-    "ocr_string": "YOUDIED"
+    "ocr_string": "YOUDIED",
+    "language": "eng"
 }
