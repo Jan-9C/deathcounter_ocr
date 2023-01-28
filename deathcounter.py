@@ -84,11 +84,12 @@ def subDeath():
 
     current = current - 1
 
-    deathLabel.config(text=str(current))
-    deathLabel.update()
+    if current >= 0:
+        deathLabel.config(text=str(current))
+        deathLabel.update()
 
-    with open(file_path, "w") as file:
-        file.write(str(current))
+        with open(file_path, "w") as file:
+            file.write(str(current))
 
 # Stop Button functionality
 def stop_scheduled_method():
