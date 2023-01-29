@@ -17,7 +17,7 @@ In my tests there was **no noticable performance impact**.
 
 # How does it work?
 
-Every 0.3 seconds the script takes a screenshot of your screen. The image gets cropped so that it only consists of the part of the screen where the death message appears. A mask corrosponding to the color of the death message gets generated. The mask is turned grayscale. After that the black and white values get filtered to be more readable for the OCR Algorithm. Two alternative versions of the image with one half of the image filled with black pixels are generated (left / right). This provides additional variants with less noise for the OCR algorithm to process. The processed images are then passed to the OCR algorithm and the result is passed to the counter.
+Every 0.3 seconds the script takes a screenshot of your screen. The image gets cropped so that it only consists of the part of the screen where the death message appears. A mask corrosponding to the color of the death message gets generated. The mask is turned grayscale. After that the black and white values get filtered to be more readable for the OCR Algorithm. Two alternative versions of the image with one half of the image filled with black pixels are generated (left / right). This provides additional variants with less noise for the OCR algorithm to process. The processed images are then passed to the OCR algorithm, which scans the image for text. The levensthein distance between the found word and the death message gets calculated. If the distance is small enough the conter gets incremented.
 
 # Requirements:
 
