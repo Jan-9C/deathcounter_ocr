@@ -193,6 +193,7 @@ With the scripts mentioned above it is possible to adapt the deathcounter script
 3. Use maskgenerator.py and optionally maskmerger.py to generate the matching mask files for your death message and change the config file accodingly
 4. Change ocr_string in the config to match the one displayed in your death message
 5. You may have to change the "refresh_time_success" parameter in the config to a higher number, if the game displays the message for longer. If you don't it could lead to 2 or more detections of one death message
+6. Change the the levensthein distance in the config so that it is proportionate to your death message string (levensthein distance is the difference between two strings, if you have a long string you may have to change it to a lower value)
 
 ## How to adapt the counter to a different language
 
@@ -204,7 +205,7 @@ There is a preconfigured config for the german version of Elden Ring in the alte
 2. Change the image crop coordinates to fit the message
 3. Change the config parameter "language" so that it matches the language code of the language you want to use
 4. Change the "ocr_string" parameter in the config to match the shown death message
-5. Change the the levensthein distance so that it is proportionate to your word (levensthein distance is the difference between two strings, if you have a long string you may have to change it to a lower value)
+5. Change the the levensthein distance in the config so that it is proportionate to your death message string (levensthein distance is the difference between two strings, if you have a long string you may have to change it to a lower value)
 
 **_Tesseract supports many languages, here are some examples of the language codes that you can use:_**
 
