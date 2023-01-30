@@ -153,6 +153,9 @@ Lower and upper are fluctuations around the pixel color value. This is done to s
 
 Files are exported to debugImages/generatedMasks <br/>
 
+![Mask.png](./README_images/readmeMask.png)
+![Sucess.png](./README_images/readmeSuccessfull.png)
+
 Usage:
 
 ```console
