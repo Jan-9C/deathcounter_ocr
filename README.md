@@ -205,7 +205,7 @@ This software depends on Tesseract OCR, an open source optical character recogni
 Tesseract OCR is distributed under the Apache License 2.0.
 More information about Tesseract OCR can be found at https://github.com/tesseract-ocr/tesseract.
 
-Copyright [2023] [Jan-9C]
+Copyright 2023 Jan-9C
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
