@@ -153,9 +153,6 @@ Lower and upper are fluctuations around the pixel color value. This is done to s
 
 Files are exported to debugImages/generatedMasks <br/>
 
-![Mask.png](./README_images/readmeMask.png)
-![Sucess.png](./README_images/readmeSuccessfull.png)
-
 Usage:
 
 ```console
@@ -168,6 +165,9 @@ python maskgenerator.py <input file> <output file name> <number of exported mask
 4. If you want to export a bigger number of masks repeat from step one
 
 The files can be imported into deathcounter.py by selecting them through the config. The files of multiple images still have to be merged by using maskmerger.py.
+
+![Mask.png](./README_images/readmeMask.png)
+![Sucess.png](./README_images/readmeSuccessfull.png)
 
 ## maskmerger.py
 
