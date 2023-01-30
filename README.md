@@ -1,5 +1,3 @@
-
-
 <p align="center">
 <img src="./README_images/readmeDeathcounter.png"/>
 </p>
@@ -22,7 +20,6 @@
   <a href="#license">License</a>
 </p>
 
-
 # Overview
 
 A python script which detects death messages for Elden Ring by using **O**ptical **C**haracter **R**ecognition.
@@ -34,7 +31,6 @@ In my tests there was **no noticable performance impact**.
 **It is also very easy to adapt the script to a different game using the additional scripts provided in this repository. For detailed instructions see below.**
 
 <br />
-
 
 ---
 
@@ -210,11 +206,11 @@ There is a preconfigured config for the german version of Elden Ring in the alte
 **_Tesseract supports many languages, here are some examples of the language codes that you can use:_**
 
 | Code | Language |
-|-----|---------|
-| eng | English |
-| spa | Spanish |
-| fra | French  |
-| deu | German  |
+| ---- | -------- |
+| eng  | English  |
+| spa  | Spanish  |
+| fra  | French   |
+| deu  | German   |
 
 You can find a full list of language codes that are supported by Tesseract in the tessdata repository on [GitHub](https://github.com/tesseract-ocr/tessdata)
 
@@ -245,8 +241,8 @@ the Free Software Foundation, either version 3 of the License, or
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
+along with this program. If not, see <https://www.gnu.org/licenses/>.
