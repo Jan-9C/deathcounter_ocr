@@ -181,3 +181,11 @@ Sometimes the detection goes wrong, for this reason you can change the counter b
 The script only works if you use the resolution 1920x1080. If you use a different resolution you have to change the image crop coordinates, which can be configured by using the python script provided in debugImages\ and the config to crop out the correct part of the screen. <br/>
 
 Preconfigured version only works with the english version of Elden Ring. But the script can be adapted to any language and any game that has a identifiable text as a death message. <br/>
+
+# Privacy Notice
+
+We respect the privacy of our users and understand the importance of protecting their personal information. This is why we want to assure you that our program does not collect any data about its users.
+
+You can use our program with confidence, knowing that we do not store or share any information about you, your device, or your use of the program. We believe that your privacy is a fundamental right and we are committed to respecting it.
+
+If you have any questions or concerns about privacy and security, please don't hesitate to contact us.
