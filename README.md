@@ -224,7 +224,7 @@ You can find a full list of language codes that are supported by Tesseract in th
 
 We respect the privacy of our users and understand the importance of protecting their personal information. This is why we want to assure you that our program does not collect any data about its users.
 
-You can use our program with confidence, knowing that we do not store or share any information about you, your device, or your use of the program. We believe that your privacy is a fundamental right and we are committed to respecting it.
+You can use our program, knowing that we do not store or share any information about you, your device, or your use of the program. We believe that your privacy is a fundamental right and we are committed to respecting it.
 
 If you have any questions or concerns about privacy and security, please don't hesitate to contact us.
 
