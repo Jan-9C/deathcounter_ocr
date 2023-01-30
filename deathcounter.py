@@ -264,7 +264,7 @@ deathLabel.config(text=counter,font=("Times New Roman", 20), fg="#a01616", bg="#
 deathLabel.pack()
 deathLabel.place(relx=.5, rely=.5, anchor="center")
 print("")
-print("deathcounter.py  Copyright (C) 2023  Jan 9-C \n\nThis program comes with ABSOLUTELY NO WARRANTY; \nThis is free software, and you are welcome to redistribute it \nunder certain conditions;")
+print("deathcounter.py  Copyright (C) 2023  Jan 9-C \n\nThis program comes with ABSOLUTELY NO WARRANTY; \nThis is free software, and you are welcome to redistribute it \nunder certain conditions;\n\nSee the GNU General Public License for more details.")
 print("")
 print("Starting Counter ...")
 update_counter()
