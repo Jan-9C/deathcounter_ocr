@@ -106,16 +106,17 @@ def stop_scheduled_method():
 # Looping method which checks for the death message and updates the counter accordingly
 def update_counter():
     detected = False
+
     # take screenshot using pyautogui
-
     image = pyautogui.screenshot(region=(0, 0, 1920, 1080))
-
     image = cv2.cvtColor(np.array(image),cv2.COLOR_BGR2HSV_FULL)
+
     # Image crop coodinates
     x=int(crop["x"])
     y=int(crop["y"])
     width=int(crop["width"])
     height=int(crop["height"])
+
     # Crop the image
     image = image[y:y+height, x:x+width]
 
@@ -156,7 +157,7 @@ def update_counter():
     if(debug_mode == "enabled"):
         cv2.imwrite("debugImages/images/image_grayscale.png", image)
 
-    # TODO: Improve image processing? Maybe not perfect?
+    # TODO: Improve image processing? Probably not perfect?
     # Black and White processing
     image = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
     #Apply dilation and erosion to remove noise
@@ -243,6 +244,7 @@ def update_counter():
     elif running:
         root.after(refresh_time, update_counter)
 
+# UI functionality
 root = tk.Tk()
 root.config(bg="#1b1c1b")
 root.title("Deathcounter")
