@@ -63,7 +63,7 @@ def levenshtein(s1, s2):
                 d[i][j] = min(d[i - 1][j], d[i][j - 1], d[i - 1][j - 1]) + 1
     return d[m][n]
 
-
+# increments the counter by 1 and saves the change to deaths.txt
 def addDeath():
     current = 0
     with open(file_path,"r") as file:
@@ -77,6 +77,7 @@ def addDeath():
     with open(file_path, "w") as file:
         file.write(str(current))
 
+# decrements the counter by 1 and saves the change to deaths.txt
 def subDeath():
     current = 0
     with open(file_path,"r") as file:
@@ -102,6 +103,7 @@ def stop_scheduled_method():
         stopButton.config(text="Stop")
         update_counter()
 
+# Looping method which checks for the death message and updates the counter accordingly
 def update_counter():
     detected = False
     # take screenshot using pyautogui
@@ -154,6 +156,7 @@ def update_counter():
     if(debug_mode == "enabled"):
         cv2.imwrite("debugImages/images/image_grayscale.png", image)
 
+    # TODO: Improve image processing? Maybe not perfect?
     # Black and White processing
     image = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
     #Apply dilation and erosion to remove noise
@@ -164,6 +167,7 @@ def update_counter():
     # Read text from image
     imgtext = pytesseract.image_to_string(image, lang=language, config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2')
 
+    # get levenshtein distance of complete cropped image
     ldistance = levenshtein(imgtext, ocr_string)
 
     # Get the shape of the image
@@ -173,29 +177,39 @@ def update_counter():
     black_image = np.zeros((blackheight, blackwidth, 3), dtype=np.uint8)
     black_image = cv2.cvtColor(np.array(black_image),cv2.COLOR_BGR2GRAY)
 
+    # The following process generates 2 new images
+    # One where the right halft is filled with black pixels and one where the left half is filled with black pixels
+    # Overall this can help the OCR Algorithm as the simplifed images have less noise
 
+    # Copy the image so that the right half can be filled with black pixels
     imageBlackR = image.copy()
 
     # Fill the left half of the image with black pixels
     imageBlackR[:, :width//2] = black_image[:, :width//2]
 
+    # Debug Info
     if(debug_mode == "enabled"):
         cv2.imwrite("debugImages/images/imageBlackR.png", imageBlackR)
 
+    # Copy the image so that the left half can be filled with black pixels
     imageBlackL = image.copy()
 
     # Fill the right half of the image with black pixels
     imageBlackL[:, width//2:] = black_image[:, width//2:]
 
+    # Debug Info
     if(debug_mode == "enabled"):
         cv2.imwrite("debugImages/images/imageBlackL.png", imageBlackL)
 
+    # Pass both processed simplified images to the OCR Algorithm
     righthalftext = pytesseract.image_to_string(imageBlackR, lang=language, config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2')
     lefthalftext = pytesseract.image_to_string(imageBlackL, lang=language, config='--psm 11 --oem 3 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -c tessedit_pageseg_mode=1 -c tessedit_min_word_length=2')
 
+    # Get the levensthein distance of the recognized text
     right_ldistance = levenshtein(righthalftext, ocr_string)
     left_ldistance = levenshtein(lefthalftext, ocr_string)
 
+    # Choose the smallest levensthein distance as the true levenshtein distance / Choose the closest match
     ldistance = min(ldistance, right_ldistance, left_ldistance)
 
     # Debug Info
@@ -223,7 +237,7 @@ def update_counter():
              cv2.imwrite("debugImages/images/successfull.png", image)
 
 
-
+    # If program is set to run by the button a match gets detected the program waits longer to schedule the match process again
     if running and detected:
         root.after(refresh_time_success, update_counter)
     elif running:
@@ -263,9 +277,11 @@ deathLabel = tk.Label(root)
 deathLabel.config(text=counter,font=("Times New Roman", 20), fg="#a01616", bg="#1b1c1b")
 deathLabel.pack()
 deathLabel.place(relx=.5, rely=.5, anchor="center")
+# Copyright Notice
 print("")
 print("deathcounter.py  Copyright (C) 2023  Jan 9-C \n\nThis program comes with ABSOLUTELY NO WARRANTY; \nThis is free software, and you are welcome to redistribute it \nunder certain conditions;\n\nSee the GNU General Public License for more details.")
 print("")
+
 print("Starting Counter ...")
 update_counter()
 root.mainloop()
