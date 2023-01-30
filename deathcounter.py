@@ -222,7 +222,7 @@ def update_counter():
         if(debug_mode == "enabled"):
              cv2.imwrite("debugImages/images/successfull.png", image)
 
-        
+
 
     if running and detected:
         root.after(refresh_time_success, update_counter)
@@ -263,8 +263,9 @@ deathLabel = tk.Label(root)
 deathLabel.config(text=counter,font=("Times New Roman", 20), fg="#a01616", bg="#1b1c1b")
 deathLabel.pack()
 deathLabel.place(relx=.5, rely=.5, anchor="center")
-
-
+print("")
+print("deathcounter.py  Copyright (C) 2023  Jan 9-C \n\nThis program comes with ABSOLUTELY NO WARRANTY; \nThis is free software, and you are welcome to redistribute it \nunder certain conditions;")
+print("")
 print("Starting Counter ...")
 update_counter()
 root.mainloop()
