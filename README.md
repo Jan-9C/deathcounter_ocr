@@ -1,5 +1,9 @@
 # deathcounter_ocr
 
+<p align="center">
+<img src="./README_images/readmeDeathcounter.png"/>
+</p>
+
 A python script which detects death messages for Elden Ring by using **O**ptical **C**haracter **R**ecognition.
 The number of deaths is then displayed in a graphical user interfaces. The number of deaths is saved between sessions. <br/>
 The deathcounter doesn't interact with the game in any way and is therefore **compatible** with **online play**. <br/>
@@ -10,9 +14,6 @@ In my tests there was **no noticable performance impact**.
 
 <br />
 
-![Mask](./README_images/readmeMask.png)
-![Deathcounter](./README_images/readmeDeathcounter.png)
-![OCR ready](./README_images/readmeSuccessfull.png)
 
 ---
 
