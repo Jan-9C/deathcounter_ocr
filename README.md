@@ -30,7 +30,7 @@ You can install the required version of python 3 from the [official website](htt
 
 ## 2) Install Tesseract OCR
 
-Install a version of **Tesseract OCR** [(Download)](https://github.com/UB-Mannheim/tesseract/wiki) <br/>
+Install a version of **Tesseract OCR** [(UB-Mannheim)](https://github.com/UB-Mannheim/tesseract/wiki) or [(Main Repository)](https://github.com/tesseract-ocr/tesseract) <br/>
 Install the language package you want to use. To use the preconfigured script download the english package. Detailed explanations for changing the language of the detected death message below.
 
 ## 3) Install required pip libraries
@@ -96,7 +96,7 @@ The debugImages folder contains three additional python scripts:<br/>
 
 ## cropimage.py
 
-This script can be used to export the coordinates you want to crop from an image. You can change the config to match the exported file to change where the screenshot gets cropped. <br/>
+This script can be used to export the coordinates you want to use to crop the screenshot. You can change the config to match the exported file to change where the screenshot gets cropped. <br/>
 Files are exported to debugImages/crops <br/>
 
 Usage:
@@ -112,6 +112,10 @@ python cropimage.py <input file> <output file name>
 ## maskgenerator.py
 
 This script can be used to generate color masks which can be used in deathcounter.py to generate a complete mask which matches the death message. <br/>
+
+Colormasks have the following format: {"lower": [166, 151, 50], "pixel": [176, 161, 90], "upper": [186, 171, 130]}. <br/>
+Lower and upper are fluctuations around the pixel color value. This is done to select a bigger colorspace and caputure a "wider" color mask. This can also be helpful if the text has an alpha value applied to it like the text in Elden Ring. You can configure the fluctuations in maskgenerator.py on line 61 and 62. <br/>
+
 Files are exported to debugImages/generatedMasks <br/>
 
 Usage:
@@ -125,7 +129,7 @@ python maskgenerator.py <input file> <output file name> <number of exported mask
 3. Either confirm the export by **rightclicking** the mask image or **close the window** and start at step one again
 4. If you want to export a bigger number of masks repeat from step one
 
-The files can be imported into deathcounter.py by selecting them through the config. The files of multiple images still have to be merged manually.
+The files can be imported into deathcounter.py by selecting them through the config. The files of multiple images still have to be merged by using maskmerger.py.
 
 ## maskmerger.py
 
@@ -146,9 +150,9 @@ With the scripts mentioned above it is possible to adapt the deathcounter script
 
 1. Take a screenshot of the "death screen"
 2. use cropimage.py to export a file which contains the right coordinates to crop the image so that it includes the "death message" and change the config file accordingly
-3. Use maskgenerator.py and maskmerger.py to generate the matching mask files for your death message and change the config file accodingly
+3. Use maskgenerator.py and optionally maskmerger.py to generate the matching mask files for your death message and change the config file accodingly
 4. Change ocr_string in the config to match the one displayed in your death message
-5. You may have to change the "refresh_time_success" parameter in the config to a higher number, if the game displays the message for longer. If you dont it could lead to 2 or more detections of one death message
+5. You may have to change the "refresh_time_success" parameter in the config to a higher number, if the game displays the message for longer. If you don't it could lead to 2 or more detections of one death message
 
 # How to adapt the counter to a different language
 
@@ -164,15 +168,14 @@ There is  a preconfigured config for the german version of Elden Ring in the alt
 
 ***Tesseract supports many languages, here are some examples of the language codes that you can use:***
 
-    eng for English
-    spa for Spanish
-    fra for French
-    deu for German
-    jpn for Japanese
-    chi_sim for Simplified Chinese
-    chi_tra for Traditional Chinese
+| Code | Language |
+|-----|---------|
+| eng | English |
+| spa | Spanish |
+| fra | French  |
+| deu | German  |
 
-You can find a full list of language codes that are supported by Tesseract in the tessdata repository on GitHub (https://github.com/tesseract-ocr/tessdata)
+You can find a full list of language codes that are supported by Tesseract in the tessdata repository on [GitHub](https://github.com/tesseract-ocr/tessdata)
 
 # Known Limitations
 
@@ -182,6 +185,8 @@ The script only works if you use the resolution 1920x1080. If you use a differen
 
 Preconfigured version only works with the english version of Elden Ring. But the script can be adapted to any language and any game that has a identifiable text as a death message. <br/>
 
+---
+
 # Privacy Notice
 
 We respect the privacy of our users and understand the importance of protecting their personal information. This is why we want to assure you that our program does not collect any data about its users.
@@ -189,3 +194,24 @@ We respect the privacy of our users and understand the importance of protecting 
 You can use our program with confidence, knowing that we do not store or share any information about you, your device, or your use of the program. We believe that your privacy is a fundamental right and we are committed to respecting it.
 
 If you have any questions or concerns about privacy and security, please don't hesitate to contact us.
+
+# Licensing
+
+This software depends on Tesseract OCR, an open source optical character recognition engine.
+Tesseract OCR is distributed under the Apache License 2.0.
+More information about Tesseract OCR can be found at https://github.com/tesseract-ocr/tesseract.
+
+Copyright [2023] [Jan-9C]
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
