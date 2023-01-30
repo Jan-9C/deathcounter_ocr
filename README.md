@@ -4,7 +4,26 @@
 <img src="./README_images/readmeDeathcounter.png"/>
 </p>
 
-# deathcounter_ocr
+<p align="center">
+  <a href="#overview">Overview</a>
+  •
+  <a href="#requirements">Requirements</a>
+  •
+  <a href="#usage">Usage</a>
+  •
+  <a href="#config">Config</a>
+  •
+  <a href="#additional-scripts">Additional Scripts</a>
+  •
+  <a href="#adapt-the-counter">Adapt the counter</a>
+  •
+  <a href="#privacy-notice">Privacy Notice</a>
+  •
+  <a href="#license">License</a>
+</p>
+
+
+# Overview
 
 A python script which detects death messages for Elden Ring by using **O**ptical **C**haracter **R**ecognition.
 The number of deaths is then displayed in a graphical user interfaces. The number of deaths is saved between sessions. <br/>
@@ -57,6 +76,8 @@ In **config.json** you have to change the path to tesseract.exe so that it match
 
 ---
 
+<br/>
+
 # Usage
 
 Use the following command while having a Command Line Interface open in the directory the script is located:
@@ -76,9 +97,19 @@ py deathcounter.py
 If you want to show the counter while streaming you just have to add the window which displays the counter as a source in OBS.<br/>
 If you want to reset the counter without spamming -1, you can just change the value of **deaths.txt**, which is located in the same directory as the script<br/>
 
+## Known Limitations
+
+Sometimes the detection goes wrong, for this reason you can change the counter by changing the content of the deaths.txt file or use the integrated button to manually change the value. <br/>
+
+The script only works if you use the resolution 1920x1080. If you use a different resolution you have to change the image crop coordinates, which can be configured by using the python script provided in debugImages\ and the config to crop out the correct part of the screen. <br/>
+
+Preconfigured version only works with the english version of Elden Ring. But the script can be adapted to any language and any game that has a identifiable text as a death message. <br/>
+
 ---
 
-# config.json
+# Config
+
+The config can be found as config.json in the directory the script is located in.
 
 | Name                    | Value             | Usage                                                                                                                         |
 | ----------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------- |
@@ -148,7 +179,9 @@ python maskmerger.py <output file name> <input file1> <input file2> <...>
 
 ---
 
-# How to adapt the counter to a different game
+# Adapt the counter
+
+## How to adapt the counter to a different game
 
 With the scripts mentioned above it is possible to adapt the deathcounter script to work with any game that has a death screen if you follow these steps:
 
@@ -158,7 +191,7 @@ With the scripts mentioned above it is possible to adapt the deathcounter script
 4. Change ocr_string in the config to match the one displayed in your death message
 5. You may have to change the "refresh_time_success" parameter in the config to a higher number, if the game displays the message for longer. If you don't it could lead to 2 or more detections of one death message
 
-# How to adapt the counter to a different language
+## How to adapt the counter to a different language
 
 **If you adapted the script to a different game or language please feel free to submit a pull request to add your configs to this repository and maybe help out other people**
 
@@ -181,14 +214,6 @@ There is a preconfigured config for the german version of Elden Ring in the alte
 
 You can find a full list of language codes that are supported by Tesseract in the tessdata repository on [GitHub](https://github.com/tesseract-ocr/tessdata)
 
-# Known Limitations
-
-Sometimes the detection goes wrong, for this reason you can change the counter by changing the content of the deaths.txt file or use the integrated button to manually change the value. <br/>
-
-The script only works if you use the resolution 1920x1080. If you use a different resolution you have to change the image crop coordinates, which can be configured by using the python script provided in debugImages\ and the config to crop out the correct part of the screen. <br/>
-
-Preconfigured version only works with the english version of Elden Ring. But the script can be adapted to any language and any game that has a identifiable text as a death message. <br/>
-
 ---
 
 # Privacy Notice
@@ -199,7 +224,9 @@ You can use our program with confidence, knowing that we do not store or share a
 
 If you have any questions or concerns about privacy and security, please don't hesitate to contact us.
 
-# Licensing
+---
+
+# License
 
 This software depends on Tesseract OCR, an open source optical character recognition engine.
 Tesseract OCR is distributed under the Apache License 2.0.
