@@ -11,6 +11,7 @@ In my tests there was **no noticable performance impact**.
 <br />
 
 ![Mask](./README_images/readmeMask.png)
+![Deathcounter](./README_images/readmeDeathcounter.png)
 ![OCR ready](./README_images/readmeSuccessfull.png)
 
 ---
@@ -67,7 +68,7 @@ or:
 py deathcounter.py
 ```
 
-***Don't forget to start the counter by clicking on the start button***
+**_Don't forget to start the counter by clicking on the start button_**
 
 If you want to show the counter while streaming you just have to add the window which displays the counter as a source in OBS.<br/>
 If you want to reset the counter without spamming -1, you can just change the value of **deaths.txt**, which is located in the same directory as the script<br/>
@@ -86,7 +87,7 @@ If you want to reset the counter without spamming -1, you can just change the va
 | "crop_file":            | name/path to file | Use to set the file which contains coodinates where image gets cropped (Standard: crop.json)                                  |
 | "mask_file":            | name/path to file | Use to set file which contains the merged masks, which you want to use for generating your masks in deathcounter.py           |
 | "ocr_string":           | matched string    | Use to set the String / Word you want the script to look for                                                                  |
-| "language":             | language code     | Use this to set the language you want Tesseract to use (needs language packet installed with Tesseract)                       |    
+| "language":             | language code     | Use this to set the language you want Tesseract to use (needs language packet installed with Tesseract)                       |
 
 ---
 
@@ -158,7 +159,7 @@ With the scripts mentioned above it is possible to adapt the deathcounter script
 
 **If you adapted the script to a different game or language please feel free to submit a pull request to add your configs to this repository and maybe help out other people**
 
-There is  a preconfigured config for the german version of Elden Ring in the alternativeConfigs/Games/Elden Ring folder which you can use.
+There is a preconfigured config for the german version of Elden Ring in the alternativeConfigs/Games/Elden Ring folder which you can use.
 
 1. Install the needed Tesseract language package
 2. Change the image crop coordinates to fit the message
@@ -166,7 +167,7 @@ There is  a preconfigured config for the german version of Elden Ring in the alt
 4. Change the "ocr_string" parameter in the config to match the shown death message
 5. Change the the levensthein distance so that it is proportionate to your word (levensthein distance is the difference between two strings, if you have a long string you may have to change it to a lower value)
 
-***Tesseract supports many languages, here are some examples of the language codes that you can use:***
+**_Tesseract supports many languages, here are some examples of the language codes that you can use:_**
 
 | Code | Language |
 |-----|---------|
