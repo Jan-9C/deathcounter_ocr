@@ -7,5 +7,6 @@
     "crop_file":"crop.json",
     "mask_file":"mask.json",
     "ocr_string": "IHRSEIDGESTORBEN",
-    "language": "deu"
+    "language": "deu",
+    "levensthein_d": "6"
 }

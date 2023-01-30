@@ -7,5 +7,6 @@
     "crop_file":"crop.json",
     "mask_file":"mask.json",
     "ocr_string": "YOUDIED",
-    "language": "eng"
+    "language": "eng",
+    "levensthein_d": "6"
 }
