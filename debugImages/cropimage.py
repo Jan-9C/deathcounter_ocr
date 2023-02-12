@@ -2,7 +2,7 @@ import cv2
 import json
 import sys
 
-# This script is a modified version of colorpicker.py
+
 
 image_rgb = None   
 crop = {'x': '754', 'y': '500', 'width': '412', 'height': '90'}
