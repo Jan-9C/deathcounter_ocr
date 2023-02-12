@@ -124,13 +124,7 @@ def update_counter():
     if(debug_mode == "enabled"):
         cv2.imwrite("debugImages/images/cropped.png", image)
 
-    # Mask 1
-    lower = np.array([166,173,62])
-    pixelvalue = np.array([176,183,102])
-    upper = np.array([186,193,142])
-    mask_lower = cv2.inRange(image, lower, pixelvalue)
-    mask_upper = cv2.inRange(image, pixelvalue, upper)
-    mask = mask_lower + mask_upper
+    firstMaskFetched = False;
 
     ## TODO: Optimize fetching of values so that it isnt executed everytime updateCounter() is called
     for element in mask_file:
@@ -139,7 +133,11 @@ def update_counter():
         upper = np.array(element["upper"])
         mask_lower = cv2.inRange(image, lower, pixelvalue)
         mask_upper = cv2.inRange(image, pixelvalue, upper)
-        mask = mask + mask_lower + mask_upper
+        if firstMaskFetched:
+            mask = mask + mask_lower + mask_upper
+        else:
+            mask = mask_lower + mask_upper
+            firstMaskFetched = True;
 
     output_img = image.copy()
     output_img[np.where(mask==0)] = 0
